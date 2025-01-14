@@ -14,6 +14,7 @@ public class GrabbableObject : MonoBehaviour
     public void Grab(Transform grabPointTransform)
     {
         grabbableRigidbody.useGravity = false;
+        grabbableRigidbody.isKinematic = true;
         this.grabPointTransform = grabPointTransform;
     }
 
@@ -21,6 +22,7 @@ public class GrabbableObject : MonoBehaviour
     {
         grabPointTransform = null;
         grabbableRigidbody.useGravity = true;
+        grabbableRigidbody.isKinematic = false;
     }
 
     private void FixedUpdate()
