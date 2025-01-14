@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class PlayerMoveController : MonoBehaviour
 {
+    private Rigidbody rb;
     [SerializeField] private PlayerInputCenter inputCenter;
     [SerializeField] private Transform cameraTransform; // For cam rotation
+    [SerializeField] private GroundChecker groundChecker;
 
-    //These lines can be seperated with settings class or scriptalbeobject
+    [Header("Movement Settings")]//These lines can be seperated with settings class or scriptalbeobject
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float lookSensitivity = 100f;
+    [SerializeField] private float jumpForce = 5f;
+
 
     [Header("Camera Pitch")]
     [SerializeField] private float minCamPitch = -90f;
     [SerializeField] private float maxCamPitch = 90f;
     private float cameraPitch = 0f;//Vertical rotation for camera
 
-    private Rigidbody rb;
-    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,18 +30,37 @@ public class PlayerMoveController : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMovement();
+        HandleJump();
+    }
+
+    private void HandleJump()
+    {
+        if (inputCenter.IsJumping && groundChecker.IsGrounded() && groundChecker.CanJump)
+        {
+            Jump();
+        }
+        else if (!inputCenter.IsJumping && groundChecker.IsGrounded())// Allow jumping again when the button is released and grounded
+        {
+            groundChecker.CanJump = true;
+        }
+    }
+    private void Jump()
+    {
+        Vector3 currentVelocity = rb.linearVelocity;
+        currentVelocity.y = jumpForce;
+        rb.linearVelocity = currentVelocity;
+        groundChecker.CanJump = false; //Prevents continuous jumping
     }
 
     private void HandleLook()
     {
-        transform.Rotate(Vector3.up * inputCenter.LookInput.x * lookSensitivity * Time.deltaTime);
+        transform.Rotate(inputCenter.LookInput.x * lookSensitivity * Time.deltaTime * Vector3.up);
 
         cameraPitch -= inputCenter.LookInput.y * lookSensitivity * Time.deltaTime;
         cameraPitch = Mathf.Clamp(cameraPitch, minCamPitch, maxCamPitch);
 
         cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
     }
-
     private void HandleMovement()
     {
         //Calculate the move vector according cam direction
@@ -57,6 +78,6 @@ public class PlayerMoveController : MonoBehaviour
         //Calculate the move vector
         Vector3 move = forward * inputCenter.MoveInput.y + right * inputCenter.MoveInput.x;
 
-        rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * move);
     }
 }

@@ -6,11 +6,13 @@ public class PlayerInputCenter : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
     public bool IsJumping { get; private set; }
+    public bool IsGrabbingSomething { get; private set; }
 
     [SerializeField] private InputActionAsset inputActions;
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
+    private InputAction grabAction;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class PlayerInputCenter : MonoBehaviour
         moveAction = playerActionMap.FindAction("Move");
         lookAction = playerActionMap.FindAction("Look");
         jumpAction = playerActionMap.FindAction("Jump");
+        grabAction = playerActionMap.FindAction("Grab");
 
         moveAction.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
         moveAction.canceled += ctx => MoveInput = Vector2.zero;
@@ -28,6 +31,9 @@ public class PlayerInputCenter : MonoBehaviour
 
         jumpAction.performed += ctx => IsJumping = true;
         jumpAction.canceled += ctx => IsJumping = false;
+
+        grabAction.performed += ctx => IsGrabbingSomething = true;
+        grabAction.canceled += ctx => IsGrabbingSomething = false;
     }
 
     private void OnEnable()
@@ -35,6 +41,7 @@ public class PlayerInputCenter : MonoBehaviour
         moveAction.Enable();
         lookAction.Enable();
         jumpAction.Enable();
+        grabAction.Enable();
     }
 
     private void OnDisable()
@@ -42,5 +49,6 @@ public class PlayerInputCenter : MonoBehaviour
         moveAction.Disable();
         lookAction.Disable();
         jumpAction.Disable();
+        grabAction.Disable();
     }
 }
