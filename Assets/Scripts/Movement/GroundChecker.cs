@@ -1,24 +1,27 @@
 using UnityEngine;
 
-public class GroundChecker : MonoBehaviour
+namespace Movement
 {
-    [Header("Ground Check Settings")]
-    [SerializeField] private LayerMask groundLayers; // Array for multiple ground layers
-    [SerializeField] private float groundCheckRadius; // Radius of the sphere check
-    [SerializeField] private Transform groundCheckPoint; // Point for checking ground
-    public bool CanJump { get; set; } = false; // To prevent continuous jumping while holding the button
-
-    public bool IsGrounded()
+    public class GroundChecker : MonoBehaviour
     {
-        return Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundLayers);
-    }
+        [Header("Ground Check Settings")]
+        [SerializeField] private LayerMask groundLayers; // Array for multiple ground layers
+        [SerializeField] private float groundCheckRadius; // Radius of the sphere check
+        [SerializeField] private Transform groundCheckPoint; // Point for checking ground
+        public bool CanJump { get; set; } = false; // To prevent continuous jumping while holding the button
 
-    private void OnDrawGizmos()
-    {
-        if (groundCheckPoint != null)
+        public bool IsGrounded()
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(groundCheckPoint.position, groundCheckRadius  );
+            return Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundLayers);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (groundCheckPoint != null)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(groundCheckPoint.position, groundCheckRadius);
+            }
         }
     }
 }

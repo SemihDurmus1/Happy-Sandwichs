@@ -1,83 +1,86 @@
 using UnityEngine;
 
-public class PlayerMoveController : MonoBehaviour
+namespace Movement
 {
-    private Rigidbody rb;
-    [SerializeField] private PlayerInputCenter inputCenter;
-    [SerializeField] private Transform cameraTransform; // For cam rotation
-    [SerializeField] private GroundChecker groundChecker;
-
-    [Header("Movement Settings")]//These lines can be seperated with settings class or scriptalbeobject
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float lookSensitivity = 100f;
-    [SerializeField] private float jumpForce = 5f;
-
-
-    [Header("Camera Pitch")]
-    [SerializeField] private float minCamPitch = -90f;
-    [SerializeField] private float maxCamPitch = 90f;
-    private float cameraPitch = 0f;//Vertical rotation for camera
-
-    private void Start()
+    public class PlayerMoveController : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-    }
+        private Rigidbody rb;
+        [SerializeField] private PlayerInputCenter inputCenter;
+        [SerializeField] private Transform cameraTransform; // For cam rotation
+        [SerializeField] private GroundChecker groundChecker;
 
-    private void Update()
-    {
-        HandleLook();
-    }
-    private void FixedUpdate()
-    {
-        HandleMovement();
-        HandleJump();
-    }
+        [Header("Movement Settings")]//These lines can be seperated with settings class or scriptalbeobject
+        [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float lookSensitivity = 100f;
+        [SerializeField] private float jumpForce = 5f;
 
-    private void HandleJump()
-    {
-        if (inputCenter.IsJumping && groundChecker.IsGrounded() && groundChecker.CanJump)
+
+        [Header("Camera Pitch")]
+        [SerializeField] private float minCamPitch = -90f;
+        [SerializeField] private float maxCamPitch = 90f;
+        private float cameraPitch = 0f;//Vertical rotation for camera
+
+        private void Start()
         {
-            Jump();
+            rb = GetComponent<Rigidbody>();
         }
-        else if (!inputCenter.IsJumping && groundChecker.IsGrounded())// Allow jumping again when the button is released and grounded
+
+        private void Update()
         {
-            groundChecker.CanJump = true;
+            HandleLook();
         }
-    }
-    private void Jump()
-    {
-        Vector3 currentVelocity = rb.linearVelocity;
-        currentVelocity.y = jumpForce;
-        rb.linearVelocity = currentVelocity;
-        groundChecker.CanJump = false; //Prevents continuous jumping
-    }
+        private void FixedUpdate()
+        {
+            HandleMovement();
+            HandleJump();
+        }
 
-    private void HandleLook()
-    {
-        transform.Rotate(inputCenter.LookInput.x * lookSensitivity * Time.deltaTime * Vector3.up);
+        private void HandleJump()
+        {
+            if (inputCenter.IsJumping && groundChecker.IsGrounded() && groundChecker.CanJump)
+            {
+                Jump();
+            }
+            else if (!inputCenter.IsJumping && groundChecker.IsGrounded())// Allow jumping again when the button is released and grounded
+            {
+                groundChecker.CanJump = true;
+            }
+        }
+        private void Jump()
+        {
+            Vector3 currentVelocity = rb.linearVelocity;
+            currentVelocity.y = jumpForce;
+            rb.linearVelocity = currentVelocity;
+            groundChecker.CanJump = false; //Prevents continuous jumping
+        }
 
-        cameraPitch -= inputCenter.LookInput.y * lookSensitivity * Time.deltaTime;
-        cameraPitch = Mathf.Clamp(cameraPitch, minCamPitch, maxCamPitch);
+        private void HandleLook()
+        {
+            transform.Rotate(inputCenter.LookInput.x * lookSensitivity * Time.deltaTime * Vector3.up);
 
-        cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
-    }
-    private void HandleMovement()
-    {
-        //Calculate the move vector according cam direction
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
+            cameraPitch -= inputCenter.LookInput.y * lookSensitivity * Time.deltaTime;
+            cameraPitch = Mathf.Clamp(cameraPitch, minCamPitch, maxCamPitch);
 
-        //reset y axis movement,y moves with character. if we dont reset it, character move at y axis by itself
-        forward.y = 0f;
-        right.y = 0f;
+            cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
+        }
+        private void HandleMovement()
+        {
+            //Calculate the move vector according cam direction
+            Vector3 forward = cameraTransform.forward;
+            Vector3 right = cameraTransform.right;
 
-        //for reduce diagonal movement speed increases
-        forward.Normalize();
-        right.Normalize();
+            //reset y axis movement,y moves with character. if we dont reset it, character move at y axis by itself
+            forward.y = 0f;
+            right.y = 0f;
 
-        //Calculate the move vector
-        Vector3 move = forward * inputCenter.MoveInput.y + right * inputCenter.MoveInput.x;
+            //for reduce diagonal movement speed increases
+            forward.Normalize();
+            right.Normalize();
 
-        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * move);
+            //Calculate the move vector
+            Vector3 move = forward * inputCenter.MoveInput.y + right * inputCenter.MoveInput.x;
+
+            rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * move);
+        }
     }
 }

@@ -1,54 +1,57 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputCenter : MonoBehaviour
+namespace Movement
 {
-    public Vector2 MoveInput { get; private set; }
-    public Vector2 LookInput { get; private set; }
-    public bool IsJumping { get; private set; }
-    public bool IsGrabbingSomething { get; private set; }
-
-    [SerializeField] private InputActionAsset inputActions;
-    private InputAction moveAction;
-    private InputAction lookAction;
-    private InputAction jumpAction;
-    private InputAction grabAction;
-
-    private void Awake()
+    public class PlayerInputCenter : MonoBehaviour
     {
-        var playerActionMap = inputActions.FindActionMap("Player");
+        public Vector2 MoveInput { get; private set; }
+        public Vector2 LookInput { get; private set; }
+        public bool IsJumping { get; private set; }
+        public bool IsGrabbingSomething { get; private set; }
 
-        moveAction = playerActionMap.FindAction("Move");
-        lookAction = playerActionMap.FindAction("Look");
-        jumpAction = playerActionMap.FindAction("Jump");
-        grabAction = playerActionMap.FindAction("Grab");
+        [SerializeField] private InputActionAsset inputActions;
+        private InputAction moveAction;
+        private InputAction lookAction;
+        private InputAction jumpAction;
+        private InputAction grabAction;
 
-        moveAction.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
-        moveAction.canceled += ctx => MoveInput = Vector2.zero;
+        private void Awake()
+        {
+            var playerActionMap = inputActions.FindActionMap("Player");
 
-        lookAction.performed += ctx => LookInput = ctx.ReadValue<Vector2>();
-        lookAction.canceled += ctx => LookInput = Vector2.zero;
+            moveAction = playerActionMap.FindAction("Move");
+            lookAction = playerActionMap.FindAction("Look");
+            jumpAction = playerActionMap.FindAction("Jump");
+            grabAction = playerActionMap.FindAction("Grab");
 
-        jumpAction.performed += ctx => IsJumping = true;
-        jumpAction.canceled += ctx => IsJumping = false;
+            moveAction.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
+            moveAction.canceled += ctx => MoveInput = Vector2.zero;
 
-        grabAction.performed += ctx => IsGrabbingSomething = true;
-        grabAction.canceled += ctx => IsGrabbingSomething = false;
-    }
+            lookAction.performed += ctx => LookInput = ctx.ReadValue<Vector2>();
+            lookAction.canceled += ctx => LookInput = Vector2.zero;
 
-    private void OnEnable()
-    {
-        moveAction.Enable();
-        lookAction.Enable();
-        jumpAction.Enable();
-        grabAction.Enable();
-    }
+            jumpAction.performed += ctx => IsJumping = true;
+            jumpAction.canceled += ctx => IsJumping = false;
 
-    private void OnDisable()
-    {
-        moveAction.Disable();
-        lookAction.Disable();
-        jumpAction.Disable();
-        grabAction.Disable();
+            grabAction.performed += ctx => IsGrabbingSomething = true;
+            grabAction.canceled += ctx => IsGrabbingSomething = false;
+        }
+
+        private void OnEnable()
+        {
+            moveAction.Enable();
+            lookAction.Enable();
+            jumpAction.Enable();
+            grabAction.Enable();
+        }
+
+        private void OnDisable()
+        {
+            moveAction.Disable();
+            lookAction.Disable();
+            jumpAction.Disable();
+            grabAction.Disable();
+        }
     }
 }

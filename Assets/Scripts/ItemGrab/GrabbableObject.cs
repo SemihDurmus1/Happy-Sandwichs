@@ -1,36 +1,41 @@
 using UnityEngine;
 
-public class GrabbableObject : MonoBehaviour
+namespace Grabbing
 {
-    [SerializeField] private Rigidbody grabbableRigidbody;
-    [SerializeField] private float lerpSpeed = 10f;
-    private Transform grabPointTransform;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(BoxCollider))]
+    public class GrabbableObject : MonoBehaviour
     {
-        grabbableRigidbody = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private Rigidbody grabbableRigidbody;
+        [SerializeField] private float lerpSpeed = 10f;
+        private Transform grabPointTransform;
 
-    public void Grab(Transform grabPointTransform)
-    {
-        grabbableRigidbody.useGravity = false;
-        grabbableRigidbody.isKinematic = true;
-        this.grabPointTransform = grabPointTransform;
-    }
-
-    public void Drop()
-    {
-        grabPointTransform = null;
-        grabbableRigidbody.useGravity = true;
-        grabbableRigidbody.isKinematic = false;
-    }
-
-    private void FixedUpdate()
-    {
-        if (grabPointTransform != null)
+        private void Awake()
         {
-            Vector3 targetPosition = Vector3.Lerp(transform.position, grabPointTransform.position, Time.deltaTime * lerpSpeed);
-            grabbableRigidbody.MovePosition(targetPosition);
+            grabbableRigidbody = GetComponent<Rigidbody>();
+        }
+
+        public void Grab(Transform grabPointTransform)
+        {
+            grabbableRigidbody.useGravity = false;
+            grabbableRigidbody.isKinematic = true;
+            this.grabPointTransform = grabPointTransform;
+        }
+
+        public void Drop()
+        {
+            grabPointTransform = null;
+            grabbableRigidbody.useGravity = true;
+            grabbableRigidbody.isKinematic = false;
+        }
+
+        private void FixedUpdate()
+        {
+            if (grabPointTransform != null)
+            {
+                Vector3 targetPosition = Vector3.Lerp(transform.position, grabPointTransform.position, Time.deltaTime * lerpSpeed);
+                grabbableRigidbody.MovePosition(targetPosition);
+            }
         }
     }
 }
