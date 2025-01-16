@@ -8,7 +8,7 @@ namespace Movement
         public Vector2 MoveInput { get; private set; }
         public Vector2 LookInput { get; private set; }
         public bool IsJumping { get; private set; }
-        public bool IsGrabbingSomething { get; private set; }
+        public bool IsGrabKeyPressed { get; private set; }
 
         [SerializeField] private InputActionAsset inputActions;
         private InputAction moveAction;
@@ -34,8 +34,8 @@ namespace Movement
             jumpAction.performed += ctx => IsJumping = true;
             jumpAction.canceled += ctx => IsJumping = false;
 
-            grabAction.performed += ctx => IsGrabbingSomething = true;
-            grabAction.canceled += ctx => IsGrabbingSomething = false;
+            grabAction.performed += ctx => IsGrabKeyPressed = true;
+            grabAction.canceled += ctx => IsGrabKeyPressed = false;
         }
 
         private void OnEnable()
