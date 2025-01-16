@@ -1,15 +1,9 @@
 using UnityEngine;
 
-namespace Grabbing
+namespace Ingredient
 {
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(BoxCollider))]
-    public class GrabbableObject : MonoBehaviour
+    public class GrabbableObject : IngredientItemBase, IGrabbable
     {
-        [SerializeField] private Rigidbody grabbableRigidbody;
-        [SerializeField] private float lerpSpeed = 10f;
-        private Transform grabPointTransform;
-
         private void Awake()
         {
             grabbableRigidbody = GetComponent<Rigidbody>();
@@ -21,7 +15,6 @@ namespace Grabbing
             grabbableRigidbody.isKinematic = true;
             this.grabPointTransform = grabPointTransform;
         }
-
         public void Drop()
         {
             grabPointTransform = null;
@@ -37,5 +30,7 @@ namespace Grabbing
                 grabbableRigidbody.MovePosition(targetPosition);
             }
         }
+
+
     }
 }
