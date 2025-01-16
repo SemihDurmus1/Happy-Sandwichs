@@ -1,8 +1,10 @@
+using Ingredient;
+using Movement;
 using UnityEngine;
 
 namespace Grabbing
 {
-    public class GrabItem : MonoBehaviour
+    public class ItemGrabManager : MonoBehaviour
     {
         [SerializeField] private PlayerInputCenter inputCenter;
 
@@ -12,8 +14,8 @@ namespace Grabbing
         [SerializeField] private float pickUpDistance = 1.0f;
         [SerializeField] private LayerMask pickUpLayerMask;
 
-        private GrabbableObject grabbableObject;
-        private bool grabKeyPressed = false;
+        [SerializeField] private GrabbableObject grabbableObject;
+        [SerializeField] private bool isGrabKeyHolding = false;
 
         private void Update()
         {
@@ -22,15 +24,16 @@ namespace Grabbing
 
         private void HandleGrabbing()
         {
-            if (inputCenter.IsGrabbingSomething && !grabKeyPressed)
+            if (inputCenter.IsGrabKeyPressed && !isGrabKeyHolding)//When press the grab key
             {
-                grabKeyPressed = true;
+                isGrabKeyHolding = true;
                 if (grabbableObject != null)//if we got something on hand
                 {
                     grabbableObject.Drop();
                     grabbableObject = null;
                 }
-                else if (Physics.Raycast(playerCamTransform.position, playerCamTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
+                else if (Physics.Raycast(playerCamTransform.position, playerCamTransform.forward,
+                         out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
                 {
                     if (raycastHit.transform.TryGetComponent(out grabbableObject))
                     {
@@ -38,10 +41,23 @@ namespace Grabbing
                     }
                 }
             }
-            if (!inputCenter.IsGrabbingSomething)//It allows interact when the key relased
+            else if (!inputCenter.IsGrabKeyPressed)//It allows interact when the key relased
             {
-                grabKeyPressed = false;
+                isGrabKeyHolding = false;
             }
         }
+
+        private void OnDrawGizmos()
+        {
+            if (playerCamTransform != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawRay(playerCamTransform.position, playerCamTransform.forward * pickUpDistance);
+            }
+        }
+
+
+
+
     }
 }
