@@ -4,6 +4,8 @@ namespace Ingredient
 {
     public class GrabbableObject : IngredientItemBase, IGrabbable
     {
+        [SerializeField] protected float lerpSpeed = 10f;
+
         private void Awake()
         {
             grabbableRigidbody = GetComponent<Rigidbody>();
