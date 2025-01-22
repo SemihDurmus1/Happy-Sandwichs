@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9014882406488077550}
   - component: {fileID: -871601414729463065}
   - component: {fileID: -6177037314364916665}
-  - component: {fileID: -8854370915014922949}
   m_Layer: 10
   m_Name: leaf
   m_TagString: Untagged
@@ -137,17 +136,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3834259, y: 0.023804057, z: 0.357273}
   m_Center: {x: 0, y: 0.05429426, z: 0}
---- !u!114 &-8854370915014922949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9028337197836632602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12508807fa8439842b3f60a7f2cedd16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbableRigidbody: {fileID: -871601414729463065}
-  lerpSpeed: 10

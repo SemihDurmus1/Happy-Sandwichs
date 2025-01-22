@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7457577981207592264}
   - component: {fileID: -387341633554295820}
   - component: {fileID: 7348287633235125559}
-  - component: {fileID: -7030891158807539836}
+  - component: {fileID: -3639257904812975537}
   m_Layer: 10
-  m_Name: cream
+  m_Name: Meat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28544787, y: 0.0052232966, z: 0.2929765}
   m_Center: {x: 0.0000012516975, y: 0.049010545, z: 0.004258387}
---- !u!114 &-7030891158807539836
+--- !u!114 &-3639257904812975537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,8 +146,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7434862075622651680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12508807fa8439842b3f60a7f2cedd16, type: 3}
+  m_Script: {fileID: 11500000, guid: ce860b9fe49291e4998dcd5ebed5b638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbableRigidbody: {fileID: -387341633554295820}
   lerpSpeed: 10
+  grabbableRigidbody: {fileID: -387341633554295820}
+  scriptableIngredientItem: {fileID: 11400000, guid: 06dd2bd2391bf7d41a603eafb363a9c4, type: 2}
