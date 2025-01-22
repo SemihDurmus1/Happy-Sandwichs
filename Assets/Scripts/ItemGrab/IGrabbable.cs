@@ -1,7 +1,13 @@
 using UnityEngine;
 
-public interface IGrabbable
+namespace Grabbing
 {
-    void Grab(Transform grabPointTransform);
-    void Drop();
+    public interface IGrabbable
+    {
+        void Grab(Transform grabPointTransform);
+        void Drop();
+    }
+
+
+
 }

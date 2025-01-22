@@ -1,10 +1,13 @@
+using Grabbing;
 using UnityEngine;
 
 namespace Ingredient
 {
-    public class GrabbableObject : IngredientItemBase, IGrabbable
+    public class GrabbableObjectBase : MonoBehaviour, IGrabbable
     {
         [SerializeField] protected float lerpSpeed = 10f;
+        [SerializeField] protected Rigidbody grabbableRigidbody;
+        protected Transform grabPointTransform;
 
         private void Awake()
         {
