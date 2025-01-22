@@ -16,8 +16,8 @@ TagManager:
   - RandomObject
   - Player
   - Static
-  - FoodItem
-  - 
+  - IngredientItem
+  - SandwichMakerPlane
   - 
   - 
   - 
