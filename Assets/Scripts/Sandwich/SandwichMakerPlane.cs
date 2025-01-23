@@ -8,8 +8,9 @@ namespace Sandwich
     /// </summary>
     public class SandwichMakerPlane : MonoBehaviour
     {
-        [SerializeField] private SandwichItem sandwich;
         [SerializeField] private LayerMask ingredientLayers;
+        [SerializeField] private SandwichItem sandwich;
+        [SerializeField] private IngredientItem[] ingredientItems;
 
         private void Start()
         {
@@ -18,29 +19,35 @@ namespace Sandwich
 
         private void OnCollisionEnter(Collision other)
         {
-            if ( ( ingredientLayers.value & (1 << other.gameObject.layer) ) != 0 )
-            {
-                //Get component that collides with SandwichPlane
-                IngredientItem ingredientItem = other.gameObject.GetComponent<IngredientItem>();
-
-                SandwichManager.Instance.AddIngredient(sandwich, ingredientItem.ScriptableIngredientItem);
-
-                SandwichManager.Instance.PrintIngredients(sandwich);
-            }
+            //AddIngredientToPlane(other);
         }
-
         private void OnCollisionExit(Collision other)
         {
-            if ((ingredientLayers.value & (1 << other.gameObject.layer)) != 0)
-            {
-                IngredientItem ingredientItem = other.gameObject.GetComponent<IngredientItem>();
+            //RemoveIngredientFromPlane(other);
+        }
 
-                SandwichManager.Instance.RemoveIngredient(sandwich, ingredientItem.ScriptableIngredientItem);
+        public void AddIngredientToPlane(IngredientItem ingredient)
+        {
+            if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
+            {
+                //IngredientItem ingredientItem = ýngredient.gameObject.GetComponent<IngredientItem>();
+
+                SandwichManager.Instance.AddIngredient(sandwich, ingredient.ScriptableIngredientItem);
 
                 SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
 
+        private void RemoveIngredientFromPlane(IngredientItem ingredient)
+        {
+            if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
+            {
+                //IngredientItem ingredientItem = ingredient.gameObject.GetComponent<IngredientItem>();
 
+                SandwichManager.Instance.RemoveIngredient(sandwich, ingredient.ScriptableIngredientItem);
+
+                SandwichManager.Instance.PrintIngredients(sandwich);
+            }
+        }
     }
 }

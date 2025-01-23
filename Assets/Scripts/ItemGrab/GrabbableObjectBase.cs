@@ -1,4 +1,5 @@
 using Grabbing;
+using Sandwich;
 using UnityEngine;
 
 namespace Ingredient
@@ -25,6 +26,21 @@ namespace Ingredient
             grabPointTransform = null;
             grabbableRigidbody.useGravity = true;
             grabbableRigidbody.isKinematic = false;
+        }
+
+        public void ResetVelocity()
+        {
+            if (grabbableRigidbody == null) return;
+
+            grabbableRigidbody.isKinematic = false;
+
+            grabbableRigidbody.linearVelocity = Vector3.zero;
+            grabbableRigidbody.angularVelocity = Vector3.zero;
+
+            grabbableRigidbody.isKinematic = true;
+            grabbableRigidbody.useGravity = false;
+            grabPointTransform = null;
+
         }
 
         private void FixedUpdate()
