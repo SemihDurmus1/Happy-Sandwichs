@@ -1,4 +1,5 @@
 using Ingredient;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sandwich
@@ -10,7 +11,7 @@ namespace Sandwich
     {
         [SerializeField] private LayerMask ingredientLayers;
         [SerializeField] private SandwichItem sandwich;
-        [SerializeField] private IngredientItem[] ingredientItems;
+        [SerializeField] private List<IngredientItem> ingredientItems;
 
         private void Start()
         {
@@ -32,13 +33,15 @@ namespace Sandwich
             {
                 //IngredientItem ingredientItem = ýngredient.gameObject.GetComponent<IngredientItem>();
 
+                ingredient.onThatSandwichMakerPlane = this;
+
                 SandwichManager.Instance.AddIngredient(sandwich, ingredient.ScriptableIngredientItem);
 
                 SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
 
-        private void RemoveIngredientFromPlane(IngredientItem ingredient)
+        public void RemoveIngredientFromPlane(IngredientItem ingredient)
         {
             if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
             {

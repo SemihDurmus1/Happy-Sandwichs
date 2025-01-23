@@ -80,6 +80,12 @@ namespace Grabbing
                 {
                     if (raycastHit.transform.TryGetComponent<IngredientItem>(out currentIngredient))
                     {
+                        if (currentIngredient.onThatSandwichMakerPlane != null)
+                        {
+                            currentIngredient.onThatSandwichMakerPlane.RemoveIngredientFromPlane(currentIngredient);
+                            currentIngredient.onThatSandwichMakerPlane = null;
+                        }
+
                         currentIngredient.Grab(grabPointTransform);
                     }
                 }

@@ -1,3 +1,4 @@
+using Sandwich;
 using UnityEngine;
 
 namespace Ingredient
@@ -6,5 +7,7 @@ namespace Ingredient
     {
         [SerializeField] private ScriptableIngredientItem scriptableIngredientItem;
         public ScriptableIngredientItem ScriptableIngredientItem => scriptableIngredientItem;
+
+        public SandwichMakerPlane onThatSandwichMakerPlane;
     }
 }
