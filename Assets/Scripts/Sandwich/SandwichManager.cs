@@ -8,7 +8,7 @@ namespace Sandwich
     {
         public static SandwichManager Instance { get; private set; }
 
-        private void Awake()
+        private void Awake()//Singleton
         {
             if (Instance == null)
             {
@@ -20,8 +20,6 @@ namespace Sandwich
                 Destroy(gameObject);
             }
         }
-
-
         //public SandwichItem CreateSandwich()
         //{
         //    Sandwich newSandwich = new Sandwich();

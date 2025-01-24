@@ -13,18 +13,27 @@ namespace Sandwich
         [SerializeField] private SandwichItem sandwich;
         [SerializeField] private List<IngredientItem> ingredientItems;
 
-        private void Start()
+        private void Awake()
         {
             sandwich = new SandwichItem();
+            //ingredientItems = new List<IngredientItem>();
         }
 
-        private void OnCollisionEnter(Collision other)
+        public void PositionOnSandwichMakerPlane(IngredientItem ingredient)//sets ingredient's position on the plane
         {
-            //AddIngredientToPlane(other);
-        }
-        private void OnCollisionExit(Collision other)
-        {
-            //RemoveIngredientFromPlane(other);
+            if (ingredientItems.Count > 0)
+            {
+                IngredientItem lastIngredient = ingredientItems[ingredientItems.Count - 1];
+
+                Vector3 newPosition = lastIngredient.transform.position;
+                newPosition.y += lastIngredient.Height / 2 + ingredient.Height / 2;//set the new ingredient's position on top of the last ingredient
+
+                ingredient.transform.SetPositionAndRotation(newPosition, transform.transform.rotation);
+            }
+            else
+            {
+                ingredient.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            }
         }
 
         public void AddIngredientToPlane(IngredientItem ingredient)
@@ -37,6 +46,8 @@ namespace Sandwich
 
                 SandwichManager.Instance.AddIngredient(sandwich, ingredient.ScriptableIngredientItem);
 
+                ingredientItems.Add(ingredient);
+
                 SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
@@ -48,6 +59,8 @@ namespace Sandwich
                 //IngredientItem ingredientItem = ingredient.gameObject.GetComponent<IngredientItem>();
 
                 SandwichManager.Instance.RemoveIngredient(sandwich, ingredient.ScriptableIngredientItem);
+
+                ingredientItems.Remove(ingredient);
 
                 SandwichManager.Instance.PrintIngredients(sandwich);
             }

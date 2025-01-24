@@ -8,6 +8,7 @@ namespace Grabbing
     public class ItemGrabManager : MonoBehaviour
     {
         [SerializeField] private PlayerInputCenter inputCenter;
+        [SerializeField] private bool isGrabKeyHolding = false;
 
         [SerializeField] private Transform playerCamTransform;
         [SerializeField] private Transform grabPointTransform;
@@ -17,44 +18,29 @@ namespace Grabbing
         [SerializeField] private LayerMask sandwichMakerPlaneLayerMask;
 
         [SerializeField] private IngredientItem currentIngredient;
-        [SerializeField] private bool isGrabKeyHolding = false;
-
         [SerializeField] private SandwichMakerPlane currentSandwichMakerPlane;//The sandwich maker plane that we raycasting
-        [SerializeField] private bool isOnSandwichPlane = false;
         
         private void Update()
         {
-            //if (currentGrabbableObject != null)//if we got something on hand
-            //{
-            //    PreviewOnSandwichMakerPlane();
-            //}
             HandleGrabbing();
         }
 
-
         private void PreviewOnSandwichMakerPlane()// This method previews ingredients on SandwichMakerPlane when the raycast hits
         {
-            if (currentIngredient == null) { return; }//skip this method if we got nothing on hand
+            if (currentIngredient == null) { return; }//return if nothing on hand
 
             if (Physics.Raycast(playerCamTransform.position, playerCamTransform.forward,
-                out RaycastHit raycastHit, pickUpDistance, sandwichMakerPlaneLayerMask))
+                out RaycastHit raycastHit, pickUpDistance, sandwichMakerPlaneLayerMask))//if ray hits a SandwichMakerPlane
             {
                 if (raycastHit.transform.TryGetComponent<SandwichMakerPlane>(out currentSandwichMakerPlane))
                 {
-                    PositionOnSandwichMakerPlane(raycastHit);
+                    currentSandwichMakerPlane.PositionOnSandwichMakerPlane(currentIngredient);
                 }
             }
-            else
+            else if (currentSandwichMakerPlane != null)
             {
                 currentSandwichMakerPlane = null;
-                isOnSandwichPlane = false;
             }
-        }
-
-        private void PositionOnSandwichMakerPlane(RaycastHit raycastHit)
-        {
-            currentIngredient.transform.SetPositionAndRotation(raycastHit.transform.position, raycastHit.transform.rotation);
-            isOnSandwichPlane = true;
         }
 
         private void HandleGrabbing()
@@ -65,7 +51,7 @@ namespace Grabbing
                 isGrabKeyHolding = true;
                 if (currentIngredient != null)//if we got something on hand
                 {
-                    if (isOnSandwichPlane)//If we put an ingredient on the sandwich plane
+                    if (currentSandwichMakerPlane != null)//If we put an ingredient on the sandwich plane
                     {
                         PlaceOnSandwichMakerPlane();
                     }
@@ -80,7 +66,7 @@ namespace Grabbing
                 {
                     if (raycastHit.transform.TryGetComponent<IngredientItem>(out currentIngredient))
                     {
-                        if (currentIngredient.onThatSandwichMakerPlane != null)
+                        if (currentIngredient.onThatSandwichMakerPlane != null)//If taken ingredient on a SandwichMakerPlane, remove from there
                         {
                             currentIngredient.onThatSandwichMakerPlane.RemoveIngredientFromPlane(currentIngredient);
                             currentIngredient.onThatSandwichMakerPlane = null;
@@ -100,10 +86,7 @@ namespace Grabbing
         {
             currentIngredient.ResetVelocity();
 
-            if (currentSandwichMakerPlane != null)
-            {
-                currentSandwichMakerPlane.AddIngredientToPlane(currentIngredient);
-            }
+            currentSandwichMakerPlane.AddIngredientToPlane(currentIngredient);
 
             currentSandwichMakerPlane = null;
             currentIngredient = null;

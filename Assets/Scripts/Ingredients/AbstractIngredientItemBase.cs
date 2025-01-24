@@ -6,8 +6,6 @@ namespace Ingredient
     [RequireComponent(typeof(BoxCollider))]
     public abstract class AbstractIngredientItemBase : ScriptableIngredientItem
     {
-        [SerializeField] private ScriptableIngredientItem scriptableIngredientItem;
-        public ScriptableIngredientItem IngredientItem => scriptableIngredientItem;
 
     }
 }

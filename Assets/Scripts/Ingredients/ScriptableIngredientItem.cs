@@ -5,11 +5,11 @@ namespace Ingredient
     [CreateAssetMenu(menuName = "Ingredients/Ingredient Item")]
     public class ScriptableIngredientItem : ScriptableObject
     {
-        [SerializeField]private AbstractIngredientItemBase ingredientPrefab;//saves prefab
+        [SerializeField]private IngredientItem ingredientPrefab;//saves prefab
         //[SerializeField]private ScriptableIngredientItem[] compatibleIngredients;
         //[SerializeField]private ScriptableIngredientItem[] incompatibleIngredients;
 
-        public AbstractIngredientItemBase IngredientPrefab => ingredientPrefab;
+        public IngredientItem IngredientPrefab => ingredientPrefab;
 
         //public bool IsCompatibleWith(ScriptableIngredientItem otherIngredient)
         //{
