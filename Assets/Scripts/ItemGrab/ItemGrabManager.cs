@@ -46,6 +46,11 @@ namespace Grabbing
         private void HandleGrabbing()
         {
             PreviewOnSandwichMakerPlane();
+            HandleGrabInput();
+        }
+
+        private void HandleGrabInput()
+        {
             if (inputCenter.IsGrabKeyPressed && !isGrabKeyHolding)//When press the grab key
             {
                 isGrabKeyHolding = true;
@@ -69,7 +74,6 @@ namespace Grabbing
                         if (currentIngredient.onThatSandwichMakerPlane != null)//If taken ingredient on a SandwichMakerPlane, remove from there
                         {
                             currentIngredient.onThatSandwichMakerPlane.RemoveIngredientFromPlane(currentIngredient);
-                            currentIngredient.onThatSandwichMakerPlane = null;
                         }
 
                         currentIngredient.Grab(grabPointTransform);

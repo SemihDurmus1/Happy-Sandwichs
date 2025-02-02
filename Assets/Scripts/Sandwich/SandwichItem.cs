@@ -1,8 +1,12 @@
-using Sandwich;
+using Ingredient;
 using System;
 using System.Collections.Generic;
-[Serializable]
-public class SandwichItem
+
+namespace Sandwich
 {
-    public List<SandwichIngredient> ingredients = new List<SandwichIngredient>();
+    [Serializable]
+    public class SandwichItem
+    {
+        public List<ScriptableIngredientItem> ingredients = new();
+    }
 }

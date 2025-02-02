@@ -5,7 +5,8 @@ using UnityEngine;
 namespace Sandwich
 {
     /// <summary>
-    /// This class for manage the Sandwich Maker Planes
+    /// This class for manage the Sandwich Maker Planes. 
+    /// It handles correct positioning ingredients on the plane, adding and removing ingredients from the sandwich.
     /// </summary>
     public class SandwichMakerPlane : MonoBehaviour
     {
@@ -35,13 +36,10 @@ namespace Sandwich
                 ingredient.transform.SetPositionAndRotation(transform.position, transform.rotation);
             }
         }
-
         public void AddIngredientToPlane(IngredientItem ingredient)
         {
             if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
             {
-                //IngredientItem ingredientItem = ýngredient.gameObject.GetComponent<IngredientItem>();
-
                 ingredient.onThatSandwichMakerPlane = this;
 
                 SandwichManager.Instance.AddIngredient(sandwich, ingredient.ScriptableIngredientItem);
@@ -51,15 +49,13 @@ namespace Sandwich
                 SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
-
         public void RemoveIngredientFromPlane(IngredientItem ingredient)
         {
             if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
             {
-                //IngredientItem ingredientItem = ingredient.gameObject.GetComponent<IngredientItem>();
-
                 SandwichManager.Instance.RemoveIngredient(sandwich, ingredient.ScriptableIngredientItem);
 
+                ingredient.onThatSandwichMakerPlane = null;
                 ingredientItems.Remove(ingredient);
 
                 SandwichManager.Instance.PrintIngredients(sandwich);

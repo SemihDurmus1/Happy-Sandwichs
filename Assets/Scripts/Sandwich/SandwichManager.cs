@@ -29,13 +29,13 @@ namespace Sandwich
 
         public void AddIngredient(SandwichItem sandwich, ScriptableIngredientItem ingredientItem)
         {
-            sandwich.ingredients.Add(new SandwichIngredient(ingredientItem));
+            sandwich.ingredients.Add(ingredientItem);
             Debug.Log(ingredientItem.name + " ingredient added.");
 
         }
         public void RemoveIngredient(SandwichItem sandwich, ScriptableIngredientItem ingredientItem)
         {
-            sandwich.ingredients.Remove(new SandwichIngredient(ingredientItem));
+            sandwich.ingredients.Remove(ingredientItem);
             Debug.Log(ingredientItem.name + "ingredient removed");
         }
         public void PrintIngredients(SandwichItem sandwich)
@@ -43,7 +43,7 @@ namespace Sandwich
             string ingredients = "";
             for (int i = 0; i < sandwich.ingredients.Count; i++)
             {
-                ingredients += sandwich.ingredients[i].Ingredient.name + ":\t";
+                ingredients += sandwich.ingredients[i].name + ":\t";
             }
             Debug.Log(ingredients);
         }
