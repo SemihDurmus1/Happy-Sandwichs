@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9014882406488077550}
   - component: {fileID: -871601414729463065}
   - component: {fileID: -6177037314364916665}
+  - component: {fileID: 4492157141850348044}
   m_Layer: 10
   m_Name: leaf
   m_TagString: Untagged
@@ -136,3 +137,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3834259, y: 0.023804057, z: 0.357273}
   m_Center: {x: 0, y: 0.05429426, z: 0}
+--- !u!114 &4492157141850348044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028337197836632602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce860b9fe49291e4998dcd5ebed5b638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 10
+  grabbableRigidbody: {fileID: -871601414729463065}
+  scriptableIngredientItem: {fileID: 0}
+  onThatSandwichMakerPlane: {fileID: 0}

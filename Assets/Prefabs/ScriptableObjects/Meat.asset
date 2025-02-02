@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47319fa8c3feb5942b7125bbfb1203ab, type: 3}
   m_Name: Meat
   m_EditorClassIdentifier: 
-  ingredientPrefab: {fileID: 136887309810721377, guid: 20eac559d9939494a9ceeb8419e7ce44, type: 3}
-  compatibleIngredients: []
-  incompatibleIngredients: []
+  ingredientPrefab: {fileID: -3639257904812975537, guid: ca9f227c39609914b9a4df9ce7477175, type: 3}
