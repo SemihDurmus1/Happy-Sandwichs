@@ -25,12 +25,9 @@ namespace Movement
             rb = GetComponent<Rigidbody>();
         }
 
-        private void Update()
-        {
-            HandleLook();
-        }
         private void FixedUpdate()
         {
+            HandleLook();
             HandleMovement();
             HandleJump();
         }

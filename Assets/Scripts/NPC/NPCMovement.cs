@@ -13,7 +13,7 @@ namespace Customer.Movement
     public class NPCMovement : MonoBehaviour
     {
         [SerializeField] private NavMeshAgent navMeshAgent;
-        [SerializeField] private Transform orderPosition;
+        [SerializeField] private Transform orderPoint;
         [SerializeField] private CustomerOrderController customerOrderController;
 
         private CustomerState customerState;
@@ -21,9 +21,9 @@ namespace Customer.Movement
         private void Start()
         {
             if (navMeshAgent == null) { navMeshAgent = GetComponent<NavMeshAgent>(); }
-            if (orderPosition != null)
+            if (orderPoint != null)
             {
-                MoveToTarget(orderPosition.position);
+                MoveToTarget(orderPoint.position);
             }
         }
 

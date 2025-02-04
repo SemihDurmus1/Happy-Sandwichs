@@ -1,5 +1,6 @@
 using Ingredient;
 using Sandwich;
+using TMPro;
 using UnityEngine;
 
 namespace Customer.Order
@@ -8,24 +9,15 @@ namespace Customer.Order
     {
         [SerializeField] private CustomerOrder customerOrder;
 
+        [SerializeField] private TextMeshProUGUI orderText;
+
         public void GenerateOrder()
         {
-            if (customerOrder == null)
-            {
-                customerOrder = new();
-            }
+            if (customerOrder == null) { customerOrder = new(); }
 
-            AddRandomSandwichesToOrder(customerOrder, Random.Range(1, 4) );
+            AddRandomSandwichesToOrder(customerOrder, Random.Range(1, 4));
 
-            for (int i = 0; i < customerOrder.SandwichOrderList.Count; i++)
-            {
-                    string sandwichString = "Sandwich " + (i + 1) + " ingredients: ";
-                for (int j = 0; j < customerOrder.SandwichOrderList[i].ingredients.Count; j++)
-                {
-                    sandwichString += customerOrder.SandwichOrderList[i].ingredients[j].name + ", ";
-                }
-                Debug.Log(sandwichString);
-            }
+            PrintOrder();
         }
 
         public void AddRandomSandwichesToOrder(CustomerOrder customerOrderList, int sandwichAmount)
@@ -47,5 +39,23 @@ namespace Customer.Order
                 newSandwich.ingredients.Add(IngredientCenter.Instance.allIngredients[randomIngredient]);
             }
         }
+
+        private void PrintOrder()
+        {
+            for (int i = 0; i < customerOrder.SandwichOrderList.Count; i++)
+            {
+                string sandwichString = "Sandwich " + (i + 1) + ": ";
+                for (int j = 0; j < customerOrder.SandwichOrderList[i].ingredients.Count; j++)
+                {
+                    sandwichString += customerOrder.SandwichOrderList[i].ingredients[j].name + ", ";
+                }
+                Debug.Log(sandwichString);
+                orderText.text += sandwichString + "\n";
+            }
+        }
+
+
+
+
     }
 }
