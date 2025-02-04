@@ -5,9 +5,12 @@ using UnityEngine;
 
 namespace Customer.Order
 {
-    public class CustomerOrderController : MonoBehaviour
+    /// <summary>
+    /// Handles the generation sandwich orders
+    /// </summary>
+    public class OrderController : MonoBehaviour
     {
-        [SerializeField] private CustomerOrder customerOrder;
+        [SerializeField] private Order customerOrder;
 
         [SerializeField] private TextMeshProUGUI orderText;
 
@@ -20,7 +23,7 @@ namespace Customer.Order
             PrintOrder();
         }
 
-        public void AddRandomSandwichesToOrder(CustomerOrder customerOrderList, int sandwichAmount)
+        public void AddRandomSandwichesToOrder(Order customerOrderList, int sandwichAmount)
         {
             for (int i = 0; i < sandwichAmount; i++)
             {

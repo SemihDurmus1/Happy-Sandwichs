@@ -14,7 +14,7 @@ namespace Customer.Movement
     {
         [SerializeField] private NavMeshAgent navMeshAgent;
         [SerializeField] private Transform orderPoint;
-        [SerializeField] private CustomerOrderController customerOrderController;
+        [SerializeField] private OrderController customerOrderController;
 
         private CustomerState customerState;
 

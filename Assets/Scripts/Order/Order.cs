@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Customer.Order
 {
-    public class CustomerOrder
+    public class Order
     {
         /// <summary>
         /// Sandwiches in a CustomerOrder
