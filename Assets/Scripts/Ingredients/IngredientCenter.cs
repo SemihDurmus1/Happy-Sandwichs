@@ -6,7 +6,10 @@ namespace Ingredient
     public class IngredientCenter : MonoBehaviour
     {
         public static IngredientCenter Instance { get; private set; }
-        public readonly ScriptableIngredientItem[] allIngredients;
+        /// <summary>
+        /// All ingredient objects in the runtime
+        /// </summary>
+        public ScriptableIngredientItem[] allIngredients;
 
         private void Awake()//Singleton
         {
@@ -22,7 +25,7 @@ namespace Ingredient
             }
         }
 
-        private void ValidateIngredients()
+        private void ValidateIngredients()//This for checking if there are any duplicated ingredients
         {
             var duplicateIngredients = allIngredients
                 .GroupBy(ingredient => ingredient.name)
