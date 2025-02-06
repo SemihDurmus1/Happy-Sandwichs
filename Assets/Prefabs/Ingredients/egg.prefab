@@ -151,5 +151,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lerpSpeed: 10
   grabbableRigidbody: {fileID: 5453825655162682961}
-  scriptableIngredientItem: {fileID: 0}
+  scriptableIngredientItem: {fileID: 11400000, guid: 8fb8ecfbaccbede40912e565b1980114, type: 2}
   onThatSandwichMakerPlane: {fileID: 0}
