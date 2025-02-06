@@ -1,10 +1,8 @@
-using Grabbing;
-using Sandwich;
 using UnityEngine;
 
 namespace Ingredient
 {
-    public class GrabbableObjectBase : MonoBehaviour, IGrabbable
+    public class GrabbableObjectBase : MonoBehaviour, Grabbing.IGrabbable
     {
         [SerializeField] protected float lerpSpeed = 10f;
         [SerializeField] protected Rigidbody grabbableRigidbody;
@@ -12,7 +10,10 @@ namespace Ingredient
 
         private void Awake()
         {
-            grabbableRigidbody = GetComponent<Rigidbody>();
+            if (grabbableRigidbody == null)
+            {
+                grabbableRigidbody = GetComponent<Rigidbody>();
+            }
         }
 
         public void Grab(Transform grabPointTransform)

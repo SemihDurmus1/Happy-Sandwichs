@@ -61,5 +61,19 @@ namespace Sandwich
                 SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
+
+        public void PrepareSandwich()
+        {
+            GameObject sandwichParent = Instantiate(IngredientCenter.Instance.resultSandwichPrefab);
+            sandwichParent.transform.position = transform.position;
+            foreach (IngredientItem ingredient in ingredientItems)
+            {
+                if (ingredient != null)
+                {
+                    Destroy(ingredient.GetComponent<Rigidbody>());
+                    ingredient.transform.SetParent(sandwichParent.transform);
+                }
+            }
+        }
     }
 }
