@@ -11,6 +11,8 @@ namespace Ingredient
         /// </summary>
         public ScriptableIngredientItem[] allIngredients;
 
+        [SerializeField] public GameObject resultSandwichPrefab;
+
         private void Awake()//Singleton
         {
             if (Instance == null)
