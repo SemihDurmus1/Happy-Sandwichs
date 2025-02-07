@@ -6,7 +6,26 @@ namespace Ingredient
     {
         [SerializeField] protected float lerpSpeed = 10f;
         [SerializeField] protected Rigidbody grabbableRigidbody;
-        protected Transform grabPointTransform;
+        protected Transform grabPointTransform;//Maybe i can reference this statically and remove from method parameters
+
+        public float Height
+        {
+            get
+            {
+                Collider collider = GetComponent<Collider>();
+                if (collider != null)
+                {
+                    return collider.bounds.size.y;
+                }
+                Renderer renderer = GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    return renderer.bounds.size.y;
+                }
+                return 0f;
+            }
+        }
+    
 
         private void Awake()
         {

@@ -410,7 +410,7 @@ MonoBehaviour:
   isGrabKeyHolding: 0
   playerCamTransform: {fileID: 6165656616748137875}
   grabPointTransform: {fileID: 5318013389125821759}
-  pickUpDistance: 1
+  pickUpDistance: 2.5
   pickUpLayerMask:
     serializedVersion: 2
     m_Bits: 5120
