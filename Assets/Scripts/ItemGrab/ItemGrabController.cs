@@ -28,7 +28,7 @@ namespace Grabbing
             {
                 if (raycastHit.transform.TryGetComponent<SandwichMakerPlane>(out playerManager.currentSandwichPlane))
                 {
-                    playerManager.currentSandwichPlane.PositionOnSandwichMakerPlane(playerManager.currentGrabbable);
+                    playerManager.currentSandwichPlane.PositionOnSandwichMakerPlane((IngredientItem)playerManager.currentGrabbable);
                 }
             }
             else if (playerManager.currentSandwichPlane != null)

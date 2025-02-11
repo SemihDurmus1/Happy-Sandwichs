@@ -30,13 +30,13 @@ namespace Sandwich
         public void AddIngredient(SandwichItem sandwich, ScriptableIngredientItem ingredientItem)
         {
             sandwich.ingredients.Add(ingredientItem);
-            Debug.Log(ingredientItem.name + " ingredient added.");
+            //Debug.Log(ingredientItem.name + " ingredient added.");
 
         }
         public void RemoveIngredient(SandwichItem sandwich, ScriptableIngredientItem ingredientItem)
         {
             sandwich.ingredients.Remove(ingredientItem);
-            Debug.Log(ingredientItem.name + "ingredient removed");
+            //Debug.Log(ingredientItem.name + "ingredient removed");
         }
         public void PrintIngredients(SandwichItem sandwich)
         {
