@@ -52,7 +52,6 @@ namespace Customer.Order
                 {
                     sandwichString += customerOrder.SandwichOrderList[i].ingredients[j].name + ", ";
                 }
-                Debug.Log(sandwichString);
                 orderText.text += sandwichString + "\n";
             }
         }
