@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Movement
+namespace Player.Input
 {
     public class PlayerInputCenter : MonoBehaviour
     {

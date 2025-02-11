@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Movement
+namespace Player.Movement
 {
     public class GroundChecker : MonoBehaviour
     {
