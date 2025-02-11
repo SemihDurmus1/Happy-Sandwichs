@@ -13,6 +13,8 @@ namespace Sandwich
         [SerializeField] private LayerMask ingredientLayers;
         [SerializeField] private SandwichItem sandwich;
         [SerializeField] private List<IngredientItem> ingredientItems;
+        public List<IngredientItem> IngredientItems { get { return ingredientItems; } }
+
 
         private void Awake()
         {
@@ -40,7 +42,7 @@ namespace Sandwich
         {
             if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
             {
-                ingredient.onThatSandwichMakerPlane = this;
+                ingredient.placedSandwichPlane = this;
 
                 SandwichManager.Instance.AddIngredient(sandwich, ingredient.ScriptableIngredientItem);
 
@@ -55,14 +57,20 @@ namespace Sandwich
             {
                 SandwichManager.Instance.RemoveIngredient(sandwich, ingredient.ScriptableIngredientItem);
 
-                ingredient.onThatSandwichMakerPlane = null;
+                ingredient.placedSandwichPlane = null;
                 ingredientItems.Remove(ingredient);
 
                 SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
 
-        public void PrepareSandwich()
+        private void ClearSandwichandItemLists()
+        {
+            sandwich.ingredients.Clear();
+            ingredientItems.Clear();
+        }
+
+        public ResultSandwich PrepareSandwich()
         {
             GameObject sandwichParent = Instantiate(IngredientCenter.Instance.resultSandwichPrefab);
             sandwichParent.transform.position = transform.position;
@@ -71,9 +79,12 @@ namespace Sandwich
                 if (ingredient != null)
                 {
                     Destroy(ingredient.GetComponent<Rigidbody>());
+
                     ingredient.transform.SetParent(sandwichParent.transform);
                 }
             }
+            ClearSandwichandItemLists();
+            return sandwichParent.GetComponent<ResultSandwich>();
         }
     }
 }
