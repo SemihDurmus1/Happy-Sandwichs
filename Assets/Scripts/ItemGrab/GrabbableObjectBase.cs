@@ -12,13 +12,11 @@ namespace Ingredient
         {
             get
             {
-                Collider collider = GetComponent<Collider>();
-                if (collider != null)
+                if (TryGetComponent<Collider>(out var collider))
                 {
                     return collider.bounds.size.y;
                 }
-                Renderer renderer = GetComponent<Renderer>();
-                if (renderer != null)
+                if (TryGetComponent<Renderer>(out var renderer))
                 {
                     return renderer.bounds.size.y;
                 }
