@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 84930145}
   - component: {fileID: 84930147}
   - component: {fileID: 84930146}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: orderText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,7 +1033,7 @@ GameObject:
   - component: {fileID: 380434884}
   - component: {fileID: 380434885}
   - component: {fileID: 380434883}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Customer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 409795431}
   - component: {fileID: 409795430}
   - component: {fileID: 409795433}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3363,7 +3363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324928178}
   - component: {fileID: 1324928180}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3634,7 +3634,7 @@ GameObject:
   - component: {fileID: 1632484590}
   - component: {fileID: 1632484589}
   - component: {fileID: 1632484588}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

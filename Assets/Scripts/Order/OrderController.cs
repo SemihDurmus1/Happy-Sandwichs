@@ -56,7 +56,10 @@ namespace Customer.Order
             }
         }
 
+        public void CompareOrder()
+        {
 
+        }
 
 
     }

@@ -39,14 +39,14 @@ namespace Grabbing
         private void HandleGrabInput()//This code is unoptimized and dirty as hell, need to fix it!
         {
             
-            if (playerManager.inputCenter.IsGrabKeyPressed && !playerManager.isGrabKeyHolding)//When press the grab key
+            if (playerManager.inputCenter.IsGrabKeyPressed && !playerManager.inputCenter.IsGrabKeyHolding)//When press the grab key
             {
-                playerManager.isGrabKeyHolding = true;
+                playerManager.inputCenter.IsGrabKeyHolding = true;
                 HandleGrabAction();
             }
             else if (!playerManager.inputCenter.IsGrabKeyPressed)//It allows interact when the key relased
             {
-                playerManager.isGrabKeyHolding = false;
+                playerManager.inputCenter.IsGrabKeyHolding = false;
             }
         }
         private void HandleGrabAction()

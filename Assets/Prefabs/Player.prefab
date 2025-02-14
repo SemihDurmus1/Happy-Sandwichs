@@ -409,7 +409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputCenter: {fileID: 1308970174144390405}
-  isGrabKeyHolding: 0
   camTransform: {fileID: 6165656616748137875}
   grabPoint: {fileID: 5318013389125821759}
   pickUpDistance: 2.5
@@ -419,9 +418,11 @@ MonoBehaviour:
   sandwichPlaneLayer:
     serializedVersion: 2
     m_Bits: 2048
+  NPCLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   currentSandwichPlane: {fileID: 0}
-  currentIngredient: {fileID: 0}
-  currentResultSandwich: {fileID: 0}
+  currentGrabbable: {fileID: 0}
   playerState: 0
 --- !u!114 &6575800811476061562
 MonoBehaviour:

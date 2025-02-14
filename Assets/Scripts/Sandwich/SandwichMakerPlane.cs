@@ -40,7 +40,7 @@ namespace Sandwich
         }
         public void AddIngredientToPlane(IngredientItem ingredient)
         {
-            if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
+            if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)//Bitwise
             {
                 ingredient.placedSandwichPlane = this;
 
@@ -53,7 +53,7 @@ namespace Sandwich
         }
         public void RemoveIngredientFromPlane(IngredientItem ingredient)
         {
-            if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)
+            if ((ingredientLayers.value & (1 << ingredient.gameObject.layer)) != 0)//Bitwise
             {
                 SandwichManager.Instance.RemoveIngredient(sandwich, ingredient.ScriptableIngredientItem);
 
@@ -64,17 +64,16 @@ namespace Sandwich
             }
         }
 
-        private void ClearSandwichandItemLists()
-        {
-            sandwich.ingredients.Clear();
-            ingredientItems.Clear();
-        }
-
         public ResultSandwich PrepareSandwich()
         {
             GameObject sandwichParent = Instantiate(IngredientCenter.Instance.resultSandwichPrefab);
+
+            ResultSandwich resultSandwich = sandwichParent.GetComponent<ResultSandwich>();
+            resultSandwich.sandwichItem = new SandwichItem(sandwich);//Transfer the Sandwich Plane's ingredients to the resultSandwich
+
             sandwichParent.transform.position = transform.position;
-            foreach (IngredientItem ingredient in ingredientItems)
+
+            foreach (IngredientItem ingredient in ingredientItems)//Delete the rigidbodys
             {
                 if (ingredient != null)
                 {
@@ -84,7 +83,17 @@ namespace Sandwich
                 }
             }
             ClearSandwichandItemLists();
-            return sandwichParent.GetComponent<ResultSandwich>();
+            return resultSandwich;
         }
+        private void ClearSandwichandItemLists()
+        {
+            sandwich.ingredients.Clear();
+            ingredientItems.Clear();
+        }
+
+
+
+
+
     }
 }

@@ -14,7 +14,6 @@ namespace Player
     public class PlayerManager : MonoBehaviour
     {
         public PlayerInputCenter inputCenter;
-        public bool isGrabKeyHolding = false;
 
         public Transform camTransform;
         public Transform grabPoint;
@@ -22,6 +21,7 @@ namespace Player
         public float pickUpDistance = 2.5f;
         public LayerMask pickUpLayers;
         public LayerMask sandwichPlaneLayer;
+        public LayerMask NPCLayer;
 
         public SandwichMakerPlane currentSandwichPlane;//The sandwich maker plane that we raycasting
         public GrabbableObjectBase currentGrabbable; // Unified variable for both IngredientItem and ResultSandwich
