@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Customer.Order
 {
+    [System.Serializable]
     public class Order
     {
         /// <summary>
