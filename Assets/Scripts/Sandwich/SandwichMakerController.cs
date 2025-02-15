@@ -1,3 +1,4 @@
+using Customer.Order;
 using Player;
 using Sandwich;
 using Unity.VisualScripting;
@@ -26,8 +27,8 @@ namespace Sandwich
                     if (Physics.Raycast(playerManager.camTransform.position, playerManager.camTransform.forward,
                 out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.NPCLayer))
                     {
-                        Debug.Log(raycastHit.collider.gameObject.name);
-                        Destroy(playerManager.currentGrabbable.gameObject);
+                        OrderController orderController = raycastHit.transform.gameObject.GetComponent<OrderController>();
+                        orderController.CompareOrder((ResultSandwich)playerManager.currentGrabbable);
                     }
                 }
                 else if (playerManager.currentSandwichPlane != null)//develop UI or red stroke around ingredient,maybe a sound
@@ -55,36 +56,7 @@ namespace Sandwich
         }
 
 
-        private void AlternativeCode()
-        {
-            //This code isnt work stable. I tried to do it with one raycast but its not good in application
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (Physics.Raycast(playerManager.camTransform.position, playerManager.camTransform.forward,
-                out RaycastHit raycastHit, playerManager.pickUpDistance))//If ray hits something
-                {
-                    //If the object that raycast hits is in sandwichPlaneLayer
-                    if ((playerManager.sandwichPlaneLayer.value & (1 << raycastHit.collider.gameObject.layer)) != 0)//Bitwise
-                    {
-                        playerManager.currentSandwichPlane = raycastHit.transform.GetComponent<SandwichMakerPlane>();
-                        if (playerManager.currentSandwichPlane.IngredientItems.Count > 0)
-                        {
-                            playerManager.currentGrabbable = playerManager.currentSandwichPlane.PrepareSandwich();
-                            playerManager.currentGrabbable.Grab(playerManager.grabPoint);
-                            playerManager.currentSandwichPlane = null;
-                        }
-                        else
-                        {
-                            Debug.Log("Sandwich Plane is empty! ");
-                        }
-                    }
-                    else if (raycastHit.collider.gameObject.layer == playerManager.NPCLayer)
-                    {
-                        //Give the sandwich to the NPC
-                    }
-                }
-            }
-        }
+     
 
     }
 }
