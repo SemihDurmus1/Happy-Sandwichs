@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47319fa8c3feb5942b7125bbfb1203ab, type: 3}
   m_Name: Leaf
   m_EditorClassIdentifier: 
+  ingredientID: 4
   ingredientPrefab: {fileID: 4492157141850348044, guid: ea0c1881449fb074294bf110430bb9b8, type: 3}
