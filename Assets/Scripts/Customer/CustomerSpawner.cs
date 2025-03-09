@@ -22,7 +22,7 @@ namespace Customer {
 
         IEnumerator SpawnCustomerRoutine()
         {
-            Debug.Log("Routine Started");
+            Debug.Log("Spawner Routine Started");
 
             while (true)
             {

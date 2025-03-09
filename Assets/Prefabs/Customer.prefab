@@ -371,9 +371,9 @@ GameObject:
   - component: {fileID: 1202634540007809791}
   - component: {fileID: 677633368248872703}
   - component: {fileID: 6784065227040036416}
+  - component: {fileID: -6538476985845013831}
   - component: {fileID: 6118075959079977694}
   - component: {fileID: 666405588171678763}
-  - component: {fileID: 8031705907675629441}
   - component: {fileID: 7921466657742932901}
   m_Layer: 13
   m_Name: Customer
@@ -475,6 +475,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6538476985845013831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036712236540911066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094cd3d904b19294b95f6cc40b5222fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPCMovement: {fileID: 6118075959079977694}
+  orderController: {fileID: 666405588171678763}
 --- !u!114 &6118075959079977694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,8 +502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 7921466657742932901}
-  orderPoint: {fileID: 0}
-  customerOrderController: {fileID: 666405588171678763}
+  orderPoints: []
+  customerManager: {fileID: -6538476985845013831}
 --- !u!114 &666405588171678763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,21 +517,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderText: {fileID: 3978876694679004038}
-  orderComparator: {fileID: 8031705907675629441}
   customerOrder:
     sandwichOrderList: []
---- !u!114 &8031705907675629441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8036712236540911066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a653fd6ed44cb43448ef3ecb1bb59899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  customerManager: {fileID: -6538476985845013831}
+  maxSandwichAmount: 3
+  maxIngredientAmount: 4
 --- !u!195 &7921466657742932901
 NavMeshAgent:
   m_ObjectHideFlags: 0

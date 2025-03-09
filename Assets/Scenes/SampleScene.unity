@@ -190,7 +190,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fb8ecfbaccbede40912e565b1980114, type: 2}
   - {fileID: 11400000, guid: 40f689155e51eb2418c4801292b21f37, type: 2}
   - {fileID: 11400000, guid: 06dd2bd2391bf7d41a603eafb363a9c4, type: 2}
-  breadPrefab: {fileID: 11400000, guid: edaa91fb8e49f614d971ae517b4598f2, type: 2}
+  breadItem: {fileID: 11400000, guid: edaa91fb8e49f614d971ae517b4598f2, type: 2}
   resultSandwichPrefab: {fileID: 4782805438768280987, guid: e59843fd97437d647854d38e913d0bcb, type: 3}
 --- !u!4 &12957189
 Transform:
