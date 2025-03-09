@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Customer.Order
 {
     /// <summary>
-    /// Handles the generation sandwich orders
+    /// Handles the generation of sandwich orders
     /// </summary>
     public class OrderController : MonoBehaviour
     {
@@ -15,11 +15,15 @@ namespace Customer.Order
 
         [SerializeField] private Order customerOrder;
 
+        [SerializeField] private CustomerManager customerManager;
+
+        [SerializeField] private int maxSandwichAmount, maxIngredientAmount;
+
         public void GenerateOrder()
         {
             customerOrder ??= new();//Create new if its null
-
-            AddRandomSandwichesToOrder(customerOrder, Random.Range(1, 4));
+            orderComparator ??= new();
+            AddRandomSandwichesToOrder(customerOrder, Random.Range(1, maxSandwichAmount + 1));
 
             PrintOrder();
         }
@@ -29,9 +33,9 @@ namespace Customer.Order
             {
                 SandwichItem orderSandwich = new();
                 //Define how many ingredients the sandwich will have
-                int ingredientCount = Random.Range(1, IngredientCenter.Instance.allIngredients.Length);
+                int ingredientCount = Random.Range(1, maxIngredientAmount + 1);
 
-                AddIngredientToSandwich(orderSandwich, ingredientCount);//Add ingredients up to the ingredient count
+                AddRandomIngredientsToSandwich(orderSandwich, ingredientCount);//Add ingredients up to the ingredient count
                 order.SandwichOrderList.Add(orderSandwich);
             }
         }
@@ -41,14 +45,15 @@ namespace Customer.Order
         /// </summary>
         /// <param name="newSandwich"></param>
         /// <param name="ingredientCount"></param>
-        private void AddIngredientToSandwich(SandwichItem newSandwich, int ingredientCount)
+        private void AddRandomIngredientsToSandwich(SandwichItem newSandwich, int ingredientCount)
         {
-            for (int i = 0; i < ingredientCount; i++)
+            SandwichManager.Instance.AddIngredient(newSandwich, IngredientCenter.Instance.breadItem);
+            for (int i = 1; i <= ingredientCount; i++)
             {
                 int randomIngredient = Random.Range(0, IngredientCenter.Instance.allIngredients.Length);
-                //newSandwich.ingredients.Add(IngredientCenter.Instance.allIngredients[randomIngredient]);
                 SandwichManager.Instance.AddIngredient(newSandwich, IngredientCenter.Instance.allIngredients[randomIngredient]);
             }
+            SandwichManager.Instance.AddIngredient(newSandwich, IngredientCenter.Instance.breadItem);
         }
         private void PrintOrder()
         {
@@ -93,6 +98,7 @@ namespace Customer.Order
                     if (customerOrder.SandwichOrderList.Count <= 0)
                     {
                         //Burada movePointlere yurume kodu yazmaliyim.
+                        customerManager.nPCMovement.OnOrderCompleted();
                     }
 
                     PrintOrder();
@@ -100,11 +106,10 @@ namespace Customer.Order
                     return;
                     // Baþarý durumunda ödül verme veya NPC davranýþýný tetikleme
                 }
-                else
-                {
-                    Debug.Log("isMatch == null, returned");
-                }
             }
+
+            Debug.Log("No sandwiches matched");
+
         }
 
 
