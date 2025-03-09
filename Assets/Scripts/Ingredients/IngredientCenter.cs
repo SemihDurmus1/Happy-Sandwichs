@@ -36,7 +36,7 @@ namespace Ingredient
                 .Select(group => group.Key)
                 .ToList();
 
-            if (duplicateIngredients.Any())
+            if (duplicateIngredients.Any())//I can add destroy func in this if 
             {
                 Debug.LogError("Duplicate ingredients found: " + string.Join(", ", duplicateIngredients));
             }

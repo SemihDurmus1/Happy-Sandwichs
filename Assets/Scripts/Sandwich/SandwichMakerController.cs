@@ -25,19 +25,23 @@ namespace Sandwich
                 if (playerManager.currentGrabbable is ResultSandwich resultSandwich)//If the object is a Sandwich
                 {
                     if (Physics.Raycast(playerManager.camTransform.position, playerManager.camTransform.forward,
-                out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.NPCLayer))
+                        out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.NPCLayer))
                     {
                         OrderController orderController = raycastHit.transform.gameObject.GetComponent<OrderController>();
                         orderController.CompareOrder((ResultSandwich)playerManager.currentGrabbable);
                     }
                 }
                 else if (playerManager.currentSandwichPlane != null)//develop UI or red stroke around ingredient,maybe a sound
+                {
                     Debug.Log("Cant drop it on there");
+                }
                 else
+                {
                     Debug.Log("Drop the object you holding");
+                }
             }
             else if (Physics.Raycast(playerManager.camTransform.position, playerManager.camTransform.forward,
-                out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.sandwichPlaneLayer))//if ray hits a SandwichMakerPlane
+                     out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.sandwichPlaneLayer))//if ray hits a SandwichMakerPlane
             {
                 if (raycastHit.transform.TryGetComponent<SandwichMakerPlane>(out playerManager.currentSandwichPlane))
                 {
