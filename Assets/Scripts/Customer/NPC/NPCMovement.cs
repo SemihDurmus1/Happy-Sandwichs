@@ -8,9 +8,10 @@ namespace Customer.Movement
     {
         [SerializeField] private NavMeshAgent navMeshAgent;
         [SerializeField] private Transform[] orderPoints;//I'll make it an array and the 0th index will be the order point
-        [SerializeField] private OrderController customerOrderController;
+        //[SerializeField] private OrderController customerOrderController;
+        //[SerializeField]private CustomerState customerState;
 
-        [SerializeField]private CustomerState customerState;
+        [SerializeField] private CustomerManager customerManager;
 
         private void Start()
         {
@@ -28,20 +29,20 @@ namespace Customer.Movement
         public void MoveToTarget(Vector3 target, CustomerState newState)
         {
             navMeshAgent.SetDestination(target);
-            customerState = newState;
+            customerManager.CustomerState = newState;
         }
 
         private void Update()
         {
-            if (customerState == CustomerState.Walking &&
+            if (customerManager.CustomerState == CustomerState.Walking &&
                 navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
-                customerOrderController.GenerateOrder();
-                customerState = CustomerState.WaitingForFood;
+                customerManager.orderController.GenerateOrder();
+                customerManager.CustomerState = CustomerState.WaitingForFood;
             }
         }
 
-        void OnOrderCompleted()
+        public void OnOrderCompleted()
         {
             MoveToTarget(PointsManager.Instance.leavePoints[Random.Range(0, 2)].position, CustomerState.Leaving);
         }
