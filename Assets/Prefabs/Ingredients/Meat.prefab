@@ -135,8 +135,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28544787, y: 0.0052232966, z: 0.2929765}
-  m_Center: {x: 0.0000012516975, y: 0.049010545, z: 0.004258387}
+  m_Size: {x: 0.28, y: 0.01, z: 0.29}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &-3639257904812975537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +152,4 @@ MonoBehaviour:
   lerpSpeed: 10
   grabbableRigidbody: {fileID: -387341633554295820}
   scriptableIngredientItem: {fileID: 11400000, guid: 06dd2bd2391bf7d41a603eafb363a9c4, type: 2}
+  placedSandwichPlane: {fileID: 0}
