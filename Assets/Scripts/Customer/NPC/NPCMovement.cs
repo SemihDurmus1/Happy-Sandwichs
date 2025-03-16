@@ -19,6 +19,7 @@ namespace Customer.Movement
 
             if (navMeshAgent == null) { navMeshAgent = GetComponent<NavMeshAgent>(); }
             if (orderPoints != null) { MoveToTarget(orderPoints[0].position, CustomerState.Walking); }
+            StartCoroutine(UpdateCoroutine());
         }
 
         /// <summary>
@@ -32,19 +33,34 @@ namespace Customer.Movement
             customerManager.CustomerState = newState;
         }
 
-        private void Update()
+        private IEnumerator UpdateCoroutine()
         {
-            if (customerManager.CustomerState == CustomerState.Walking &&
-                navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            while (true)
             {
-                customerManager.orderController.GenerateOrder();
-                customerManager.CustomerState = CustomerState.WaitingForFood;
+                if (!navMeshAgent.pathPending && customerManager.CustomerState == CustomerState.Walking &&//Pathpending ile hata cozuldu
+                    navMeshAgent.remainingDistance <= 0.01f)
+                {
+                    customerManager.orderController.GenerateOrder();
+                    customerManager.CustomerState = CustomerState.WaitingForFood;
+                }
+                else if (!navMeshAgent.pathPending && customerManager.CustomerState == CustomerState.Leaving)
+                {//NPC deletes itself at the first frame after this code, need to fix it
+
+                    if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+                yield return new WaitForSeconds(1f);
             }
         }
 
         public void OnOrderCompleted()
         {
-            MoveToTarget(PointsManager.Instance.leavePoints[Random.Range(0, 2)].position, CustomerState.Leaving);
+            Debug.Log($"OnOrderCompleted called for {gameObject.name}, NavMeshAgent active: {navMeshAgent.isActiveAndEnabled}");
+
+            Vector3 randomLeavePoint = orderPoints[Random.Range(0, 2)].position;
+            MoveToTarget(randomLeavePoint, CustomerState.Leaving);
         }
 
     }
