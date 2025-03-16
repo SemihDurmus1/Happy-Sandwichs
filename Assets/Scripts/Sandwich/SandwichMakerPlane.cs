@@ -48,7 +48,7 @@ namespace Sandwich
 
                 ingredientItems.Add(ingredient);
 
-                SandwichManager.Instance.PrintIngredients(sandwich);
+                //SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
         public void RemoveIngredientFromPlane(IngredientItem ingredient)
@@ -60,7 +60,7 @@ namespace Sandwich
                 ingredient.placedSandwichPlane = null;
                 ingredientItems.Remove(ingredient);
 
-                SandwichManager.Instance.PrintIngredients(sandwich);
+                //SandwichManager.Instance.PrintIngredients(sandwich);
             }
         }
 
