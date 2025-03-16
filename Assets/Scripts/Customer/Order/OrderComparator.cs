@@ -1,5 +1,7 @@
 using Ingredient;
+using NUnit.Framework;
 using Sandwich;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -46,12 +48,15 @@ namespace Customer.Order
                 Debug.Log("Ingredient counts doesn't match.");
                 return false;
             }
+            
+            SandwichItem expectedInstance = new(expected);
+            SandwichItem deliveredInstance = new(delivered);
 
-            SortLists(expected, delivered);
+            SortLists(expectedInstance, deliveredInstance);
 
             for (int i = 0; i < expected.ingredients.Count; i++)//Compare Sandwiches
             {
-                if (expected.ingredients[i].ingredientID != delivered.ingredients[i].ingredientID)
+                if (expectedInstance.ingredients[i].ingredientID != deliveredInstance.ingredients[i].ingredientID)
                 {
                     Debug.Log("Ingredients doesn't match.");
                     return false;
