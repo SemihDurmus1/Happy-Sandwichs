@@ -31,7 +31,7 @@ namespace Sandwich
                 }
                 else if (playerManager.currentSandwichPlane != null)//develop UI or red stroke around ingredient,maybe a sound
                 {
-                    Debug.Log("Cant drop it on there");
+                    Debug.Log("Place the item on the plane(Press F)");
                 }
                 else
                 {

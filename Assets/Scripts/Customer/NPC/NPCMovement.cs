@@ -25,7 +25,7 @@ namespace Customer.Movement
         }
 
         /// <summary>
-        /// Moves the target and sets a new State
+        /// Moves to target and sets a new State
         /// </summary>
         /// <param name="target"></param>
         /// <param name="newState"></param>

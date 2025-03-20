@@ -10,12 +10,6 @@ namespace Customer.Order
     [System.Serializable]
     public class OrderComparator
     {
-        //private ScriptableIngredientItem bread;
-        //private void Start()
-        //{
-        //    //bread = IngredientCenter.Instance.breadPrefab;
-        //}
-
         /// <summary>
         /// Compares two orders to see if they are the same
         /// Returns true if they have the same ingredients
@@ -34,14 +28,6 @@ namespace Customer.Order
                 Debug.Log("Put the breads correct!");//first or last ingredient isnt bread
                 return false;
             }
-
-            ////If the first and last ingredient of the expectedIngredient aren't bread
-            //if (expected.ingredients[0] != IngredientCenter.Instance.breadItem && 
-            //    expected.ingredients[^1]!= IngredientCenter.Instance.breadItem)
-            //{
-            //    expected.ingredients.Insert(0, IngredientCenter.Instance.breadItem);//Inserts the bread as first item and the array shifts one right
-            //    expected.ingredients.Add(IngredientCenter.Instance.breadItem);
-            //}
 
             if (expected.ingredients.Count != delivered.ingredients.Count)//return if lists counts doesn't match
             {

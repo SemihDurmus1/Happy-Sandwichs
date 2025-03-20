@@ -520,8 +520,8 @@ MonoBehaviour:
   customerOrder:
     sandwichOrderList: []
   customerManager: {fileID: -6538476985845013831}
-  maxSandwichAmount: 3
-  maxIngredientAmount: 4
+  maxSandwichAmount: 2
+  maxIngredientAmount: 2
 --- !u!195 &7921466657742932901
 NavMeshAgent:
   m_ObjectHideFlags: 0
