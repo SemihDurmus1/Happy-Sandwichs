@@ -10,7 +10,7 @@ namespace Customer.Order
     /// </summary>
     public class OrderController : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI orderText;
+        [SerializeField] private TMP_Text orderText;
         [SerializeField] private OrderComparator orderComparator;
 
         [SerializeField] private Order customerOrder;
@@ -58,6 +58,7 @@ namespace Customer.Order
         private void PrintOrder()
         {
             orderText.text = "";
+            orderText.color = Color.white;
             for (int i = 0; i < customerOrder.SandwichOrderList.Count; i++)
             {
                 string sandwichString = "Sandwich " + (i + 1) + ": ";
@@ -84,34 +85,45 @@ namespace Customer.Order
                 Debug.LogWarning("OrderComparator is not assigned.");
                 return;
             }
-
             for (int i = 0; i < customerOrder.SandwichOrderList.Count; i++)//Needs to loop this with given sandwich's length
             {
+                //Compare phase-------------------------------------------------------------
                 bool isMatch = orderComparator.CompareSandwiches
                     (customerOrder.SandwichOrderList[i], resultSandwich.sandwichItem);
 
-                if (isMatch)
+                //React Phase-------------------------------------------------------------
+                if (!isMatch)
                 {
-                    Debug.Log("Correct sandwich delivered!");
-                    customerOrder.SandwichOrderList.RemoveAt(i);
-
-                    if (customerOrder.SandwichOrderList.Count <= 0)
-                    {
-                        //Burada movePointlere yurume kodu yazmaliyim.
-                        customerManager.nPCMovement.OnOrderCompleted();
-                    }
-
-                    PrintOrder();
-                    Destroy(resultSandwich.gameObject);
-                    return;
-                    // Baþarý durumunda ödül verme veya NPC davranýþýný tetikleme
+                    ReactBad();
+                    continue; /*pass this iteration*/
                 }
+
+                //Success Phase-------------------------------------------------------------
+                TakeTheSandwich(resultSandwich, i);
+                // Baþarý durumunda ödül verme veya NPC davranýþýný tetikleme
             }
 
-            Debug.Log("No sandwiches matched");
 
         }
 
+        private void TakeTheSandwich(ResultSandwich resultSandwich, int i)
+        {
+            customerOrder.SandwichOrderList.RemoveAt(i);
 
+            if (customerOrder.SandwichOrderList.Count <= 0)
+            {
+                customerManager.nPCMovement.OnOrderCompleted();
+            }
+
+            PrintOrder();
+            Destroy(resultSandwich.gameObject);
+        }
+
+        private void ReactBad()
+        {
+            orderText.text = "Orrospu çocu bu ne?";
+            orderText.color = Color.red;
+            Invoke(nameof(PrintOrder), 1.5f);
+        }
     }
 }

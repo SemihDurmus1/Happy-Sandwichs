@@ -8,14 +8,21 @@ namespace Customer.Stats
         [Range(0f, 1f)]
         [SerializeField] private float angerRate, patience, stinginess, rudeness;
 
-        private ScriptableCustomerStats()
+        private void OnEnable()
         {
             InitializeRandomStats();
         }
 
-        private void InitializeRandomStats()
+        public void InitializeRandomStats()
         {
-
+            angerRate  = Random.Range(0f, 1f);
+            patience   = Random.Range(0f, 1f);
+            stinginess = Random.Range(0f, 1f);
+            rudeness   = Random.Range(0f, 1f);
+            Debug.Log("Anger: " + angerRate + "\t---\t" + 
+                      "Patience: " + patience + "\t---\t" +
+                      "Stinginess: " + stinginess + "\t---\t" +
+                      "Rudeness: " + rudeness);
         }
     }
 }

@@ -487,6 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094cd3d904b19294b95f6cc40b5222fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerStats: {fileID: 11400000, guid: cf2339518ba0a674c90a5afb778a363d, type: 2}
   nPCMovement: {fileID: 6118075959079977694}
   orderController: {fileID: 666405588171678763}
 --- !u!114 &6118075959079977694

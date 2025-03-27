@@ -1,5 +1,6 @@
 using Customer.Movement;
 using Customer.Order;
+using Customer.Stats;
 using UnityEngine;
 
 namespace Customer
@@ -14,6 +15,8 @@ namespace Customer
     public class CustomerManager : MonoBehaviour
     {
         public CustomerState CustomerState { get; set; }
+        [SerializeField] private ScriptableCustomerStats customerStats;
+
         public NPCMovement nPCMovement;
         public OrderController orderController;
 
@@ -21,6 +24,7 @@ namespace Customer
         {
             //nPCMovement = GetComponent<NPCMovement>();
             //orderController = GetComponent<OrderController>();
+            customerStats.InitializeRandomStats();
         }
     }
 }

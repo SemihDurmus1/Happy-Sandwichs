@@ -214,9 +214,9 @@ GameObject:
   - component: {fileID: 5246874017549423748}
   - component: {fileID: 8497265754307549896}
   - component: {fileID: 1308970174144390405}
+  - component: {fileID: 7748646772406768818}
   - component: {fileID: 4350256716512750518}
   - component: {fileID: 2071379353465276179}
-  - component: {fileID: 7748646772406768818}
   - component: {fileID: 6575800811476061562}
   - component: {fileID: 6721281449788391323}
   m_Layer: 8
@@ -359,6 +359,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &7748646772406768818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865246330379493037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcd6767899237242890c42607bbb497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputCenter: {fileID: 1308970174144390405}
+  camTransform: {fileID: 6165656616748137875}
+  grabPoint: {fileID: 5318013389125821759}
+  pickUpDistance: 2.5
+  pickUpLayers:
+    serializedVersion: 2
+    m_Bits: 5120
+  sandwichPlaneLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  NPCLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  currentSandwichPlane: {fileID: 0}
+  currentGrabbable: {fileID: 0}
+  playerState: 0
 --- !u!114 &4350256716512750518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,34 +424,6 @@ MonoBehaviour:
     m_Bits: 192
   groundCheckRadius: 0.3
   groundCheckPoint: {fileID: 8601048173195950135}
---- !u!114 &7748646772406768818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7865246330379493037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdcd6767899237242890c42607bbb497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputCenter: {fileID: 1308970174144390405}
-  camTransform: {fileID: 6165656616748137875}
-  grabPoint: {fileID: 5318013389125821759}
-  pickUpDistance: 2.5
-  pickUpLayers:
-    serializedVersion: 2
-    m_Bits: 5120
-  sandwichPlaneLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  NPCLayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  currentSandwichPlane: {fileID: 0}
-  currentGrabbable: {fileID: 0}
-  playerState: 0
 --- !u!114 &6575800811476061562
 MonoBehaviour:
   m_ObjectHideFlags: 0
