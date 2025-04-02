@@ -22,8 +22,6 @@ namespace Customer {
 
         IEnumerator SpawnCustomerRoutine()
         {
-            Debug.Log("Spawner Routine Started");
-
             while (true)
             {
                 yield return new WaitForSeconds(spawnTimer);
