@@ -79,10 +79,13 @@ namespace Sandwich
                 {
                     Destroy(ingredient.GetComponent<Rigidbody>());
 
+                    resultSandwich.sandwichPrice += ingredient.ScriptableIngredientItem.price;//Add ingredient's price
+
                     ingredient.transform.SetParent(sandwichParent.transform);
                 }
             }
             ClearSandwichandItemLists();
+            Debug.Log("Sandwich Price: " + resultSandwich.sandwichPrice);
             return resultSandwich;
         }
         private void ClearSandwichandItemLists()

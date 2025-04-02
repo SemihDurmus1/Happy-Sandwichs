@@ -1,4 +1,5 @@
 using Ingredient;
+using Player;
 using Sandwich;
 using TMPro;
 using UnityEngine;
@@ -99,6 +100,9 @@ namespace Customer.Order
                 }
 
                 //Success Phase-------------------------------------------------------------
+                PlayerManager playerManager = FindAnyObjectByType<PlayerManager>();
+                playerManager.wallet.AddToWallet(1);
+
                 TakeTheSandwich(resultSandwich, i);
                 // Baþarý durumunda ödül verme veya NPC davranýþýný tetikleme
             }

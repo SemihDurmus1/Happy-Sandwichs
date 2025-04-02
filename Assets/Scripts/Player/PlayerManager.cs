@@ -27,5 +27,7 @@ namespace Player
         public GrabbableObjectBase currentGrabbable; // Unified variable for both IngredientItem and ResultSandwich
 
         public PlayerState playerState = PlayerState.Idle;
+
+        public Wallet wallet;
     }
 }
