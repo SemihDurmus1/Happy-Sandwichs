@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: -1468292493121495834, guid: 87cfedc88d8e56648b723fdba5846c21, type: 3}
+  ingredientID: 0
+  price: 0.75

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47319fa8c3feb5942b7125bbfb1203ab, type: 3}
   m_Name: Cheese
   m_EditorClassIdentifier: 
-  ingredientID: 2
   ingredientPrefab: {fileID: 2763533891015322926, guid: 20eac559d9939494a9ceeb8419e7ce44, type: 3}
+  ingredientID: 2
+  price: 0.85

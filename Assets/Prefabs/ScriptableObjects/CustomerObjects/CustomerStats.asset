@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42bf1bcb7f0c7204ba7627f70008565d, type: 3}
   m_Name: CustomerStats
   m_EditorClassIdentifier: 
-  angerRate: 0
-  patience: 0
-  stinginess: 0
-  rudeness: 0
+  angerRate: 0.98792017
+  patience: 0.42177278
+  stinginess: 0.14403915
+  rudeness: 0.8851067

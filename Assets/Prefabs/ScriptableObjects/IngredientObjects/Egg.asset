@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47319fa8c3feb5942b7125bbfb1203ab, type: 3}
   m_Name: Egg
   m_EditorClassIdentifier: 
-  ingredientID: 3
   ingredientPrefab: {fileID: -7461304191593680543, guid: c921460efc085b84996f3cd6247b7932, type: 3}
+  ingredientID: 3
+  price: 0.3
