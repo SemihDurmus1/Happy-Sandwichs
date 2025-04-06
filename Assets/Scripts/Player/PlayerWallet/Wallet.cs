@@ -9,7 +9,7 @@ namespace Player
     [System.Serializable]
     public class Wallet : IPayToWallet
     {
-        [SerializeField] private string walletName;
+        //[SerializeField] private string walletName;
         [SerializeField] private float walletBalance;
         public float GetBalance() => walletBalance;
 
@@ -17,6 +17,19 @@ namespace Player
         {
             walletBalance += amount;
             Debug.Log("Update Balance: " + walletBalance.ToString("F2"));
+        }
+
+        public void RemoveFromWallet(float amount)
+        {
+            if (walletBalance >= amount)
+            {
+                walletBalance -= amount;
+                Debug.Log("Update Balance: " + walletBalance);
+            }
+            else
+            {
+                Debug.Log("Not enough money");
+            }
         }
     }
 }
