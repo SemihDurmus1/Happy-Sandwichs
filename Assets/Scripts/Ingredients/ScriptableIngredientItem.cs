@@ -13,6 +13,7 @@ namespace Ingredient
         [SerializeField] private IngredientItem ingredientPrefab;//saves prefab
         public IngredientID ingredientID;
         public float price;
+        public float buyPrice;
 
         public IngredientItem IngredientPrefab => ingredientPrefab;
 

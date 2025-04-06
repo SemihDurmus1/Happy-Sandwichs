@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
-    private bool isCursorLocked = true; //Locked on start
+    [SerializeField]private bool isCursorLocked = true; //Locked on start
 
     void Start()
     {
-        ToggleCursor(false); // Lock
+        //ToggleCursor(false); // Lock
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) // Show the cursor when pressed ESC
-        {
-            ToggleCursor(!isCursorLocked);
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape)) // Show the cursor when pressed ESC
+        //{
+        //    ToggleCursor(!isCursorLocked);
+        //}
+        ToggleCursor(!isCursorLocked);
     }
 
     public void ToggleCursor(bool showCursor)
