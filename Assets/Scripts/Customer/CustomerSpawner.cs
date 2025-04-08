@@ -11,6 +11,8 @@ namespace Customer {
         private void Start()
         {
             spawnPoints = PointsManager.Instance.spawnPoints;
+
+            SpawnCustomer();
             StartCoroutine(SpawnCustomerRoutine());
         }
 
