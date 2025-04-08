@@ -19,50 +19,52 @@ namespace Grabbing
             PreviewOnSandwichMakerPlane();
             HandleGrabInput();
         }
-        private void PreviewOnSandwichMakerPlane()// This method previews ingredients on SandwichMakerPlane when the raycast hits
+
+        /// <summary>
+        /// Checks if we holding sommething and previews it on a SandwichMakerPlane when the raycast hits.
+        /// </summary>
+        private void PreviewOnSandwichMakerPlane()
         {
             if (playerManager.currentGrabbable is not IngredientItem ingredient) { return; }//return if nothing on hand
 
             if (Physics.Raycast(playerManager.camTransform.position, playerManager.camTransform.forward,
                 out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.sandwichPlaneLayer))//if ray hits a SandwichMakerPlane
             {
-                if (raycastHit.transform.TryGetComponent<SandwichMakerPlane>(out playerManager.currentSandwichPlane))
+                if (raycastHit.transform.TryGetComponent<SandwichMakerPlane>(out playerManager.currentSandwichPlane))//Assign the plane
                 {
                     playerManager.currentSandwichPlane.PositionOnSandwichMakerPlane((IngredientItem)playerManager.currentGrabbable);
                 }
             }
-            else if (playerManager.currentSandwichPlane != null)
+            else if (playerManager.currentSandwichPlane != null)//If hit nothing and plane aren't null
             {
                 playerManager.currentSandwichPlane = null;
             }
         }
         private void HandleGrabInput()//This code is unoptimized and dirty as hell, need to fix it!
-        {
-            
+        {   
+            //Grabkey pressed and GrabKeyHolding not pressed.
             if (playerManager.inputCenter.IsGrabKeyPressed && !playerManager.inputCenter.IsGrabKeyHolding)//When press the grab key
             {
-                playerManager.inputCenter.IsGrabKeyHolding = true;
+                playerManager.inputCenter.IsGrabKeyHolding = true;//Activate the holding state
                 HandleGrabAction();
             }
-            else if (!playerManager.inputCenter.IsGrabKeyPressed)//It allows interact when the key relased
+            else if (!playerManager.inputCenter.IsGrabKeyPressed)//If not GrabKeyPressed. It allows interact when the key relased
             {
-                playerManager.inputCenter.IsGrabKeyHolding = false;
+                playerManager.inputCenter.IsGrabKeyHolding = false;//Deactivate the holding state
             }
         }
         private void HandleGrabAction()
         {
             if (playerManager.currentGrabbable != null)//if we got something on hand
             {
-                if (playerManager.currentGrabbable is IngredientItem ingredient
-                    && playerManager.currentSandwichPlane != null)//if it's an ingredient and previewing on a plane
+                //if we holding an ingredient and it's on a plane
+                if (playerManager.currentGrabbable is IngredientItem ingredient && playerManager.currentSandwichPlane != null)
                 {
-
                     PlaceOnSandwichMakerPlane();//Place the ingredient on the plane
                 }
                 else
                 {
-                    playerManager.currentGrabbable.Drop();
-                    playerManager.currentGrabbable = null;
+                    DropGrabbable();
                 }
                 //else if (playerManager.currentGrabbable is ResultSandwich resultSandwich)
                 //{
@@ -73,11 +75,17 @@ namespace Grabbing
             else TryPickUpIngredient();
         }
 
+        private void DropGrabbable()
+        {
+            playerManager.currentGrabbable.Drop();
+            playerManager.currentGrabbable = null;
+        }
+
         private void TryPickUpIngredient()
         {
             if (playerManager.currentGrabbable != null)//this not so necessary but it's good for guarantee
             {
-                Debug.Log("U cant grab this while you holding item");
+                Debug.Log("U cant grab something while you holding an item");
                 return;
             }
             if (Physics.Raycast(playerManager.camTransform.position, playerManager.camTransform.forward,
@@ -85,7 +93,7 @@ namespace Grabbing
             {
                 if (raycastHit.transform.TryGetComponent<GrabbableObjectBase>(out playerManager.currentGrabbable))
                 {
-                    if (playerManager.currentGrabbable is IngredientItem ingredient)
+                    if (playerManager.currentGrabbable is IngredientItem ingredient)//This statement can be written better
                     {
 
                         if (ingredient.placedSandwichPlane != null)//If taken ingredient on a SandwichMakerPlane, remove from there

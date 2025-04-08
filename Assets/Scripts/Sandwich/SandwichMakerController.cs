@@ -3,7 +3,8 @@ using Player;
 using UnityEngine;
 
 namespace Sandwich
-{
+{//Bu koddaki olan interaksyonlari daha okunabilir bir hale getirmem gerekiyor. Her bir tur icin yeni bir if yazamam.
+ //Bir interface gibi bir sey yapmam lazim
     public class SandwichMakerController : MonoBehaviour
     {
         [SerializeField] private PlayerManager playerManager;
@@ -23,7 +24,7 @@ namespace Sandwich
                 if (playerManager.currentGrabbable is ResultSandwich resultSandwich)//If the object is a Sandwich
                 {
                     if (Physics.Raycast(playerManager.camTransform.position, playerManager.camTransform.forward,
-                        out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.NPCLayer))
+                        out RaycastHit raycastHit, playerManager.pickUpDistance, playerManager.NPCLayer))//Check for NPCs
                     {
                         OrderController orderController = raycastHit.transform.gameObject.GetComponent<OrderController>();
                         orderController.CompareOrder((ResultSandwich)playerManager.currentGrabbable);
