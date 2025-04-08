@@ -43,11 +43,11 @@ namespace Ingredient
         }
 
 
-        public ScriptableIngredientItem GetIngredient(string name)
+        public ScriptableIngredientItem GetIngredient(IngredientID id)
         {
             foreach (var ingredient in allIngredients)
             {
-                if (ingredient.name == name)
+                if (ingredient.ingredientID == id)
                     return ingredient;
             }
             return null;
