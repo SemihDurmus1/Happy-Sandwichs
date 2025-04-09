@@ -12,6 +12,7 @@ namespace Ingredient
     {
         [SerializeField] private IngredientItem ingredientPrefab;//saves prefab
         public IngredientID ingredientID;
+        public Sprite ingredientIcon;
         public float price;
         public float buyPrice;
 
