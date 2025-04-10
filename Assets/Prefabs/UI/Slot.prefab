@@ -331,7 +331,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2476534763815249433}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7029134837709952386}
+        m_TargetAssemblyTypeName: IngredientSlot, Assembly-CSharp
+        m_MethodName: BuyButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4842698458576843663
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fee78184698f194dac2799ed8786442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ingredient: {fileID: 0}
   icon: {fileID: 6038334015919191966}
   nameText: {fileID: 3613252233562391170}
   priceText: {fileID: 8307334322784054517}
