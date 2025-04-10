@@ -1,4 +1,5 @@
 using Ingredient;
+using Market;
 using UnityEngine;
 
 public class IngredientSlotsManager : MonoBehaviour
@@ -10,10 +11,6 @@ public class IngredientSlotsManager : MonoBehaviour
     {
         _allIngredients = IngredientCenter.Instance.allIngredients;
         LoadIngredientSlots();
-    }
-    private void OnEnable()
-    {
-
     }
 
     private void LoadIngredientSlots()
@@ -29,9 +26,6 @@ public class IngredientSlotsManager : MonoBehaviour
     {
         Instantiate(_slotPrefab, gameObject.transform);
         IngredientSlot ingredientSlot = _slotPrefab.GetComponent<IngredientSlot>();
-        //ingredientSlot.icon.sprite = ingredient.ingredientIcon;
-        //ingredientSlot.nameText.text = ingredient.name;
-        //ingredientSlot.priceText.text = ingredient.price.ToString();
         ingredientSlot.SetSlotInfos(ingredient);
     }
 }

@@ -19,16 +19,18 @@ namespace Player
             Debug.Log("Update Balance: " + walletBalance.ToString("F2"));
         }
 
-        public void RemoveFromWallet(float amount)
+        public bool RemoveFromWallet(float amount)
         {
             if (walletBalance >= amount)
             {
                 walletBalance -= amount;
                 Debug.Log("Update Balance: " + walletBalance);
+                return true;
             }
             else
             {
                 Debug.Log("Not enough money");
+                return false;
             }
         }
     }
