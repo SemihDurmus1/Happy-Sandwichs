@@ -93,7 +93,7 @@ namespace Customer.Order
                     (customerOrder.SandwichOrderList[i], resultSandwich.sandwichItem);
 
                 //React Phase-------------------------------------------------------------
-                if (!isMatch)
+                if (!isMatch)//Burada react icin ayri bir manager gerekiyor
                 {
                     ReactBad();
                     continue; /*pass this iteration*/
