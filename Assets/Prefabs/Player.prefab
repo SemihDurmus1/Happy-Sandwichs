@@ -384,9 +384,14 @@ MonoBehaviour:
   NPCLayer:
     serializedVersion: 2
     m_Bits: 8192
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 16384
   currentSandwichPlane: {fileID: 0}
   currentGrabbable: {fileID: 0}
   playerState: 0
+  wallet:
+    walletBalance: 10
 --- !u!114 &4350256716512750518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 7748646772406768818}
+  raycastUIManager: {fileID: 0}
 --- !u!114 &6721281449788391323
 MonoBehaviour:
   m_ObjectHideFlags: 0
