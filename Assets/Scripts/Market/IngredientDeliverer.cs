@@ -1,12 +1,15 @@
 using Ingredient;
 using UnityEngine;
 
-public class IngredientDeliverer : MonoBehaviour
+namespace Market
 {
-    [SerializeField] private Transform _deliverPoint;
-
-    public void GetDeliver(ScriptableIngredientItem ingredient)
+    public class IngredientDeliverer : MonoBehaviour
     {
-        Instantiate(ingredient.IngredientPrefab, _deliverPoint);
+        [SerializeField] private Transform _deliverPoint;
+
+        public void GetDeliver(ScriptableIngredientItem ingredient)
+        {
+            Instantiate(ingredient.IngredientPrefab, _deliverPoint);
+        }
     }
 }
