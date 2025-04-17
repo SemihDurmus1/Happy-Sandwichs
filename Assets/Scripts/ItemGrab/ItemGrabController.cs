@@ -5,9 +5,13 @@ using UnityEngine;
 
 namespace Grabbing
 {
+    /// <summary>
+    /// In this script i chose send a raycast after queries rather than querying after Raycast
+    /// </summary>
     public class ItemGrabController : MonoBehaviour
     {
         [SerializeField] private PlayerManager playerManager;
+        [SerializeField] private RaycastUIManager raycastUIManager;
 
         private void Update()
         {
@@ -21,7 +25,7 @@ namespace Grabbing
         }
 
         /// <summary>
-        /// Checks if we holding sommething and previews it on a SandwichMakerPlane when the raycast hits.
+        /// Checks if we holding something and after previews it on a SandwichMakerPlane when the raycast hits.
         /// </summary>
         private void PreviewOnSandwichMakerPlane()
         {
@@ -58,7 +62,8 @@ namespace Grabbing
             if (playerManager.currentGrabbable != null)//if we got something on hand
             {
                 //if we holding an ingredient and it's on a plane
-                if (playerManager.currentGrabbable is IngredientItem ingredient && playerManager.currentSandwichPlane != null)
+                if (playerManager.currentGrabbable is IngredientItem ingredient && 
+                    playerManager.currentSandwichPlane != null)
                 {
                     PlaceOnSandwichMakerPlane();//Place the ingredient on the plane
                 }
@@ -71,6 +76,11 @@ namespace Grabbing
                 //    playerManager.currentGrabbable.Drop();
                 //    playerManager.currentGrabbable = null;
                 //}
+            }
+            else if (raycastUIManager.currentInteractable != null)
+            {
+                raycastUIManager.currentInteractable.Interact();
+                raycastUIManager.currentInteractable.HideInteractUI();
             }
             else TryPickUpIngredient();
         }
@@ -95,7 +105,6 @@ namespace Grabbing
                 {
                     if (playerManager.currentGrabbable is IngredientItem ingredient)//This statement can be written better
                     {
-
                         if (ingredient.placedSandwichPlane != null)//If taken ingredient on a SandwichMakerPlane, remove from there
                         {
                             ingredient.placedSandwichPlane.RemoveIngredientFromPlane(ingredient);
