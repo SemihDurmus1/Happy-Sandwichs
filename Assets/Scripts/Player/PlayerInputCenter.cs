@@ -68,5 +68,34 @@ namespace Player.Input
             grabAction.Disable();
             interactAction.Disable();
         }
+
+        public void SetInputEnabled(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                moveAction.Enable();
+                lookAction.Enable();
+                jumpAction.Enable();
+                grabAction.Enable();
+                interactAction.Enable();
+            }
+            else
+            {
+                moveAction.Disable();
+                lookAction.Disable();
+                jumpAction.Disable();
+                grabAction.Disable();
+                interactAction.Disable();
+
+                // Inputlari sifirla (yapisan tuslardan kacinmak icin)
+                MoveInput = Vector2.zero;
+                LookInput = Vector2.zero;
+                IsJumping = false;
+                IsGrabKeyPressed = false;
+                IsGrabKeyHolding = false;
+                IsInteractKeyPressed = false;
+                IsInteractKeyHolding = false;
+            }
+        }
     }
 }
