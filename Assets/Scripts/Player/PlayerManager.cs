@@ -22,6 +22,7 @@ namespace Player
         public LayerMask pickUpLayers;
         public LayerMask sandwichPlaneLayer;
         public LayerMask NPCLayer;
+        public LayerMask interactionLayer;
 
         public SandwichMakerPlane currentSandwichPlane;//The sandwich maker plane that we raycasting
         public GrabbableObjectBase currentGrabbable; // Unified variable for both IngredientItem and ResultSandwich
