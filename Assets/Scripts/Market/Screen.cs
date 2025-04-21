@@ -1,3 +1,5 @@
+using Player;
+using Player.Camera;
 using Player.Input;
 using UnityEngine;
 
@@ -6,7 +8,10 @@ namespace Market
     public class Screen : MonoBehaviour, IInteractable
     {
         [SerializeField] private BoxCollider screenCollider;
-        [SerializeField] private PlayerInputCenter playerInputCenter;
+        [SerializeField] private PlayerManager playerManager;
+        [SerializeField] private Transform screenCamPoint;
+        [SerializeField] private float camSmoothness;
+
         private void Start()
         {
             screenCollider = GetComponent<BoxCollider>();
@@ -29,8 +34,9 @@ namespace Market
 
             screenCollider.enabled = false;
 
-            //playerInputCenter = FindAnyObjectByType<PlayerInputCenter>();
-            playerInputCenter.SetInputEnabled(false); // disable inputs
+            GameManager.Instance.cameraController.SetCamFocus(CameraFocusMode.Screen);
+
+            playerManager.inputCenter.SetInputEnabled(false); // disable inputs
 
         }
 
@@ -40,7 +46,9 @@ namespace Market
 
             screenCollider.enabled = true;
 
-            playerInputCenter.SetInputEnabled(true); // enable inputs
+            GameManager.Instance.cameraController.SetCamFocus(CameraFocusMode.Player);
+
+            playerManager.inputCenter.SetInputEnabled(true); // enable inputs
         }
     }
 }
