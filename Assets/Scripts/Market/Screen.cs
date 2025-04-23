@@ -9,7 +9,6 @@ namespace Market
     {
         [SerializeField] private BoxCollider screenCollider;
         [SerializeField] private PlayerManager playerManager;
-        [SerializeField] private Transform screenCamPoint;
         [SerializeField] private float camSmoothness;
 
         private void Start()
@@ -46,9 +45,9 @@ namespace Market
 
             screenCollider.enabled = true;
 
-            GameManager.Instance.cameraController.SetCamFocus(CameraFocusMode.Player);
-
             playerManager.inputCenter.SetInputEnabled(true); // enable inputs
+
+            GameManager.Instance.cameraController.SetCamFocus(CameraFocusMode.Player);
         }
     }
 }

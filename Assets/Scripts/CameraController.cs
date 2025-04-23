@@ -16,7 +16,7 @@ namespace Player.Camera
         [SerializeField] private float smoothSpeed = 5f;
         [SerializeField] private CameraFocusMode camFocus = CameraFocusMode.Player;
 
-        private void LateUpdate()
+        private void FixedUpdate()
         {
             switch (camFocus)
             {
@@ -25,6 +25,7 @@ namespace Player.Camera
                     break;
                 case CameraFocusMode.Screen:
                     MoveCamera(screenTransform);
+                    camTransform.rotation = screenTransform.rotation;
                     break;
             }
         }
@@ -36,10 +37,10 @@ namespace Player.Camera
 
         public void MoveCamera(Transform targetTransform)
         {
-            Vector3 targetPosition = Vector3.Lerp(camTransform.position, targetTransform.position, Time.deltaTime * smoothSpeed);
-            Quaternion targetRotation = Quaternion.Lerp(camTransform.rotation, targetTransform.rotation, Time.deltaTime * smoothSpeed);
+            Vector3 targetPosition = Vector3.Lerp(camTransform.position, targetTransform.position, Time.fixedDeltaTime * smoothSpeed);
+            //Quaternion targetRotation = Quaternion.Lerp(camTransform.rotation, targetTransform.rotation, Time.fixedDeltaTime * smoothSpeed);
             camTransform.position = targetPosition;
-            camTransform.rotation = targetRotation;
+            //camTransform.rotation = targetRotation;
         }
     }
 }
