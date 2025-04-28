@@ -34,7 +34,7 @@ namespace Player.Camera
         {
             camFocus = focusMode;
         }
-
+        
         public void MoveCamera(Transform targetTransform)
         {
             Vector3 targetPosition = Vector3.Lerp(camTransform.position, targetTransform.position, Time.fixedDeltaTime * smoothSpeed);

@@ -9,7 +9,6 @@ namespace Market
     {
         [SerializeField] private BoxCollider screenCollider;
         [SerializeField] private PlayerManager playerManager;
-        [SerializeField] private float camSmoothness;
 
         private void Start()
         {
@@ -18,7 +17,6 @@ namespace Market
         }
         public void ShowInteractUI()
         {
-            Debug.Log("Screen interact");
             GameManager.Instance.uiManager.ActivateUI(GameManager.Instance.uiManager.clickUI);
         }
 

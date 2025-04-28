@@ -34,7 +34,6 @@ public class RaycastUIManager : MonoBehaviour
             }
             else if (interactable != null && interactable != currentInteractable)//If interactable arent the current
             {
-                Debug.Log("Baba interactablei buldu");
                 currentInteractable = interactable;
                 interactable.ShowInteractUI();
             }
